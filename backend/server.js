@@ -2,8 +2,8 @@ const express = require('express')
 const expressServer = express()
 const { port } = require('./config/environment')
 require('dotenv').config()
+const Router = require('.router')
 
-// For environment varibles
 console.log(process.env.hello)
 
 expressServer.use((req, res, next) => {
@@ -11,5 +11,4 @@ expressServer.use((req, res, next) => {
   next()
 })
 
-// We can give it whichever port we like, but it must be unique!
-expressServer.listen(port)
+expressServer.listen(8000)
