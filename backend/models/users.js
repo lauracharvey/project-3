@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
-const mongoosHidden = require('mongoose-hidden')
+const mongooseHidden = require('mongoose-hidden')
 const uniqueValidator = require('mongoose-unique-validator')
 
 
@@ -16,11 +16,11 @@ location: { type: String,required: true},
 image: { type: String, required: true}
 })
 
-schema.plugin(mongooseHidden({ defaultHidden: { password: true, email: true } }))
+userSchema.plugin(mongooseHidden({ defaultHidden: { password: true, email: true } }))
 
-schema.plugin(uniqueValidator)
+userSchema.plugin(uniqueValidator)
 
-schema
+userSchema
   .pre('validate', function checkPassword (next) {
     if (this.password !== this._passwordConfirmation) {
 
@@ -29,13 +29,13 @@ schema
     next()
   })
 
-schema
+userSchema
   .pre('save', function hashPassword(next) {
     this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync())
   })
 
   schema.methods.validatePassword = function validatePassword (password) {
-    return bcrypto.compareSync(password, this.password)
+    return bcrypt.compareSync(password, this.password)
   }
 
   module.exports = mongoose.model('User', userSchema)

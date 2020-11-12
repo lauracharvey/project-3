@@ -2,8 +2,6 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 
-
-
 function createUser(req, res) {
   const body = req.body
   console.log(body)
@@ -36,7 +34,7 @@ function loginUser(req, res) {
 }
 
 function getUsers(req, res) {
-  Users
+  User
     .find()
     .then(userList => {
       res.send(userList)
