@@ -13,20 +13,20 @@ function secureRoute(req, res, next) {
   jwt.verify(token, secret, (err, payload) => {
     if (err) return res.status(401).send({ message: 'Unauthorized ' })
 
-    const userId = payoad.sub
+    const userId = payload.sub
 
-User
-.findById(userId)
-.then(user => {
-  if (!user) return res.status(401).send({ message: 'Unauthorized ' })
+    User
+      .findById(userId)
+      .then(user => {
+        if (!user) return res.status(401).send({ message: 'Unauthorized ' })
 
-  req.currentUser = user
+        req.currentUser = user
 
-  next()
-})
-.catch(() => res.status(401).send({ message: 'Unauthorized ' }))
-  
-})
+        next()
+      })
+      .catch(() => res.status(401).send({ message: 'Unauthorized ' }))
+
+  })
 
 }
 
