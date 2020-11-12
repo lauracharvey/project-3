@@ -20,10 +20,10 @@ userSchema.plugin(mongooseHidden({ defaultHidden: { password: true, email: true 
 
 userSchema.plugin(uniqueValidator)
 userSchema
-.virtual('passwordConfirmation')
-.set(function setPasswordConfirmation(passwordConfirmation){
-  this._passwordConfirmation = passwordConfirmation
-})
+  .virtual('passwordConfirmation')
+  .set(function setPasswordConfirmation(passwordConfirmation) {
+    this._passwordConfirmation = passwordConfirmation
+  })
 
 userSchema
   .pre('validate', function checkPassword(next) {
@@ -37,6 +37,8 @@ userSchema
 userSchema
   .pre('save', function hashPassword(next) {
     this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync())
+    next()
+
   })
 
 userSchema.methods.validatePassword = function validatePassword(password) {

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const User = require('./models/users')
 
 mongoose.connect(
-  'mongodb://localhost/sortDB',
+  'mongodb://localhost/sortdb',
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   (err) => {
     if (err) return console.log(err)
