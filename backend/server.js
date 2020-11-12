@@ -1,6 +1,5 @@
 const express = require('express')
 const expressServer = express()
-const { port } = require('./config/environment')
 require('dotenv').config()
 const Router = require('./router')
 const mongoose = require('mongoose')
