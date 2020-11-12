@@ -25,7 +25,7 @@ mongoose.connect(
           {
             username: "Clarence",
             email: "clarence@dating.com",
-            password: password2,
+            password: "password2",
             age: 32,
             height: "6ft2in",
             bio: "this is a bio",
@@ -36,7 +36,7 @@ mongoose.connect(
           {
             username: "Derek",
             email: "derek@dating.com",
-            password: password3,
+            password: "password3",
             age: 31,
             height: "6ft1in",
             bio: "this is a bio",
@@ -58,7 +58,7 @@ mongoose.connect(
           {
             username: "Allie",
             email: "allie@dating.com",
-            password: password5,
+            password: "password5",
             age: 30,
             height: "5ft4in",
             bio: "this is a bio",
@@ -69,7 +69,7 @@ mongoose.connect(
           {
             username: "Rose",
             email: "rose@dating.com",
-            password: password6,
+            password: "password6",
             age: 30,
             height: "5ft2in",
             bio: "this is a bio",
@@ -80,7 +80,7 @@ mongoose.connect(
           {
             username: "Jack",
             email: "jack@dating.com",
-            password: password7,
+            password: "password7",
             age: 30,
             height: "5ft9in",
             bio: "this is a bio",
@@ -102,7 +102,7 @@ mongoose.connect(
           {
             username: "Jack2",
             email: "jack2@dating.com",
-            password: password9,
+            password: "password9",
             age: 30,
             height: "5ft9in",
             bio: "this is a bio",
@@ -113,7 +113,7 @@ mongoose.connect(
           {
             username: "Vivian",
             email: "vivian@dating.com",
-            password: password10,
+            password: "password10",
             age: 28,
             height: "5ft7in",
             bio: "this is a bio",
@@ -124,7 +124,7 @@ mongoose.connect(
           {
             username: "Edward",
             email: "edward@dating.com",
-            password: password11,
+            password: "password11",
             age: 39,
             height: "6ft3in",
             bio: "this is a bio",
@@ -135,7 +135,7 @@ mongoose.connect(
           {
             username: "Stacey",
             email: "stacey@dating.com",
-            password: password12,
+            password: "password12",
             age: 26,
             height: "5ft4in",
             bio: "this is a bio",
