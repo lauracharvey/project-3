@@ -31,7 +31,7 @@ const Signup = (props) => {
   function handleChange(event) {
     const name = event.target.name
     const value = event.target.value
-    console.log(`name: ${name}, value ${value}`)
+    // console.log(`name: ${name}, value ${value}`)
     const data = {
       ...signupFormData,
       [name]: value

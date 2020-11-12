@@ -6,7 +6,7 @@ const Navbar = (props) => {
   function handleLogout() {
     localStorage.removeItem('token')
 
-    props.history.push('/home')
+    props.history.push('/')
   }
 
   return <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -17,12 +17,14 @@ const Navbar = (props) => {
             <Link to="/" className="button is-dark">Home</Link>
             {/* <Link to="/signup" className="button is-dark">Signup</Link>
             <Link to="/login" className="button is-dark">Login</Link> */}
-            {localStorage.getItem('token') && <button
-              className="button"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>}
+            {localStorage.getItem('token')
+              && <Link className="button is-success" to="/users">Profiles</Link>}
+            {localStorage.getItem('token')
+              && <button className="button is-light"
+                onClick={handleLogout}>
+                Logout
+              </button>}
+
           </div>
         </div>
       </div>
