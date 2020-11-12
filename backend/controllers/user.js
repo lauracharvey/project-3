@@ -36,6 +36,7 @@ function loginUser(req, res) {
 function getUsers(req, res) {
   User
     .find()
+    .populate('user')
     .then(userList => {
       res.send(userList)
     })
