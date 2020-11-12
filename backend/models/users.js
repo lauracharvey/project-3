@@ -19,12 +19,17 @@ const userSchema = new mongoose.Schema({
 userSchema.plugin(mongooseHidden({ defaultHidden: { password: true, email: true } }))
 
 userSchema.plugin(uniqueValidator)
+userSchema
+.virtual('passwordConfirmation')
+.set(function setPasswordConfirmation(passwordConfirmation){
+  this._passwordConfirmation = passwordConfirmation
+})
 
 userSchema
   .pre('validate', function checkPassword(next) {
     if (this.password !== this._passwordConfirmation) {
 
-      this.invalidte('passwordConfirmation', 'should match password')
+      this.invalidate('passwordConfirmation', 'should match password')
     }
     next()
   })

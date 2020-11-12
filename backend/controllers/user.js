@@ -1,11 +1,11 @@
-const Users = require('../models/users')
+const User = require('../models/users')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 
 function createUser(req, res) {
   const body = req.body
   console.log(body)
-  Users
+  User
     .create(body)
     .then(user => {
       console.log(user)
@@ -15,7 +15,7 @@ function createUser(req, res) {
 }
 
 function loginUser(req, res) {
-  Users
+  User
     .findOne({ email: req.body.email })
     .then(user => {
       if (!user.validatePassword(req.body.password)) {
