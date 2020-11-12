@@ -1,4 +1,4 @@
-const User = require('../models/user')
+const Users = require('../models/users')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 
@@ -7,7 +7,7 @@ const { secret } = require('../config/environment')
 function createUser(req, res) {
   const body = req.body
   console.log(body)
-  User
+  Users
     .create(body)
     .then(user => {
       console.log(user)
@@ -17,7 +17,7 @@ function createUser(req, res) {
 }
 
 function loginUser(req, res) {
-  User
+  Users
     .findOne({ email: req.body.email })
     .then(user => {
       if (!user.validatePassword(req.body.password)) {
@@ -28,9 +28,9 @@ function loginUser(req, res) {
         { sub: user._id },
         secret,
         { expiresIn: '48h' }
-      ) 
+      )
 
-      res.status(202).send({ token, message: 'Login was successful!'} )
+      res.status(202).send({ token, message: 'Login was successful!' })
     })
 
 }
@@ -41,7 +41,7 @@ function getUsers(req, res) {
     .then(userList => {
       res.send(userList)
     })
-  .catch(error => res.send(error))
+    .catch(error => res.send(error))
 }
 
 module.exports = {

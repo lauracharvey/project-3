@@ -15,18 +15,18 @@ function secureRoute(req, res, next) {
 
     const userId = payoad.sub
 
-User
-.findById(userId)
-.then(user => {
-  if (!user) return res.status(401).send({ message: 'Unauthorized ' })
+    User
+      .findById(userId)
+      .then(user => {
+        if (!user) return res.status(401).send({ message: 'Unauthorized ' })
 
-  req.currentUser = user
+        req.currentUser = user
 
-  next()
-})
-.catch(() => res.status(401).send({ message: 'Unauthorized ' }))
-  
-}
+        next()
+      })
+      .catch(() => res.status(401).send({ message: 'Unauthorized ' }))
+
+  }
 }
 
 module.exports = secureRoute 

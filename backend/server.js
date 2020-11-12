@@ -22,6 +22,6 @@ expressServer.use((req, res, next) => {
 
 expressServer.use(bodyParser.json())
 
-expressServer.use ('/api', Router)
+expressServer.use('/api', Router)
 
 expressServer.listen(8000)

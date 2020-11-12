@@ -10,10 +10,10 @@ router.route('/users')
   .get(userController.getUsers)
 
 router.route('/signup')
-.post(userController.createUser)
+  .post(userController.createUser)
 
 router.route('/login')
-.post(userController.loginUser)
+  .post(userController.loginUser)
 
 
 
