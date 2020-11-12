@@ -35,6 +35,7 @@ function loginUser(req, res) {
 
 function getUsers(req, res) {
   User
+  console.log("hello")
     .find()
     .then(userList => {
       res.send(userList)
