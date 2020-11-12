@@ -34,8 +34,8 @@ function loginUser(req, res) {
 }
 
 function getUsers(req, res) {
+  const body = req.body
   User
-  console.log("hello")
     .find()
     .populate('user')
     .then(userList => {
