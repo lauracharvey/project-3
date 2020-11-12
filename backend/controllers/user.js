@@ -37,6 +37,7 @@ function getUsers(req, res) {
   User
   console.log("hello")
     .find()
+    .populate('user')
     .then(userList => {
       res.send(userList)
     })
