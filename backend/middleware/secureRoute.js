@@ -10,10 +10,10 @@ function secureRoute(req, res, next) {
   }
 
   const token = authToken.replace('Bearer ', '')
-  jwt.verify(token, secret, (err, payload)) => {
+  jwt.verify(token, secret, (err, payload) => {
     if (err) return res.status(401).send({ message: 'Unauthorized ' })
 
-    const userId = payoad.sub
+    const userId = payload.sub
 
     User
       .findById(userId)
@@ -26,7 +26,8 @@ function secureRoute(req, res, next) {
       })
       .catch(() => res.status(401).send({ message: 'Unauthorized ' }))
 
-  }
+  })
+
 }
 
 module.exports = secureRoute 
