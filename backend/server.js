@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 mongoose.connect(
-  'mongodb://localhost/sortDB',
+  'mongodb://localhost/sortdb',
   { userNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   (err) => {
     if (err) console.log(err)
