@@ -165,13 +165,13 @@ mongoose.connect(
 
       .then((users) => {
         return Cities.create([
-          
+
           {
             name: 'London',
             country: 'England',
             bio: 'London is layered with history, where medieval and Victorian complement a rich and vibrant modern world. The Tower of London and Westminster neighbour local pubs and markets, and time-worn rituals like the changing of the guards take place as commuters rush to catch the Tube. It’s a place where travellers can time-hop through the city, and when they’re weary, do as Londoners do and grab a “cuppa” tea.',
             image: 'https://london.ac.uk/sites/default/files/styles/promo_medium/public/2018-10/london-aerial-cityscape-river-thames_1.jpg?itok=VADuaEL7',
-            user:users[0]
+            user: users[0]
           },
           {
             name: 'Madrid',
@@ -180,14 +180,14 @@ mongoose.connect(
             image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/33/e6/bf/caption.jpg?w=700&h=300&s=1',
             user: users[0]
           },
-           {
+          {
             name: 'Paris',
             country: 'France',
             bio: 'Nowhere else on earth makes the heart swoon like the mention of Paris. The city lures with its magnificent art, architecture, culture, and cuisine, but there’s also a quieter magic waiting to be explored: the quaint cobbled lanes, the sweet patisseries around the corner, and the cozy little bistros that beckon with a glass of Beaujolais. Get ready to make Paris your own.',
             image: 'https://media-cdn.tripadvisor.com/media/photo-c/768x250/17/15/6d/d6/paris.jpg',
             user: users[0]
           },
-          
+
           {
             name: 'Dublin',
             country: 'Ireland',
@@ -196,9 +196,9 @@ mongoose.connect(
             user: users[0]
           }
         ])
-      }) 
+      })
       .then(cities => {
-        console.log(`${cities.length} have been created`)
+        console.log(`${cities.length} cities have been created`)
       })
 
 

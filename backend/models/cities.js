@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
 
-const commentSchema = new.mongoose.Schema({
-text: { type: String, required: true },
-user: { type: mongoose.Schema.ObjectId, ref:'User', required: true }
+const commentSchema = new mongoose.Schema({
+  text: { type: String, required: true },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 }, {
   timestamps: true
 })
@@ -12,13 +12,13 @@ user: { type: mongoose.Schema.ObjectId, ref:'User', required: true }
 const citySchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   country: { type: String, required: true },
-  bio: {type: String, required: true},
+  bio: { type: String, required: true },
   image: { type: String, required: true },
-  user: {type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-  comments: [ commentSchema ]
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  comments: [commentSchema]
 })
 
-schema.plugin(uniqueValidator)
+citySchema.plugin(uniqueValidator)
 
 module.exports = mongoose.model('City', citySchema)
 
