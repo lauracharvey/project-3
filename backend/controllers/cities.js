@@ -1,9 +1,9 @@
 const { default: Axios } = require('axios')
-const Cities = require('../models/cities')
+const City = require('../models/cities')
 const axios = require('axios')
 
 function getCities(req, res){
-  Cities
+  City
   .find()
   .populate('user')
   .then(citiesList => {
