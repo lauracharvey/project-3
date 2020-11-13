@@ -1,4 +1,5 @@
 const User = require('../models/users')
+const express = require('express')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 

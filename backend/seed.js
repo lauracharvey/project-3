@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const User = require('./models/users')
+const Cities = require('./models/cities')
 
 mongoose.connect(
   'mongodb://localhost/sortdb',
@@ -68,7 +69,7 @@ mongoose.connect(
             height: '5ft4in',
             bio: 'this is a bio',
             interest: 'laughter',
-            location: 'London',
+            location: 'Madrid',
             image: 'https://imagesvc.meredithcorp.io/v3/mm/image?q=85&c=sc&poi=face&w=2000&h=1333&url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F24%2F2014%2F05%2F2302801_beaut_mcdnote_ec028-1.jpg'
           },
           {
@@ -80,7 +81,7 @@ mongoose.connect(
             height: '5ft2in',
             bio: 'this is a bio',
             interest: 'cruises',
-            location: 'London',
+            location: 'Dublin',
             image: 'https://static.wikia.nocookie.net/jamescameronstitanic/images/d/d3/Rosedewittbukater.jpg/revision/latest/scale-to-width-down/235?cb=20120518041253'
           },
           {
@@ -104,7 +105,7 @@ mongoose.connect(
             height: '5ft9in',
             bio: 'this is a bio',
             interest: 'horse riding',
-            location: 'London',
+            location: 'Paris',
             image: 'https://cdn.gaystarnews.com/uploads/2015/08/Ledger.jpg'
           },
           {
@@ -128,7 +129,7 @@ mongoose.connect(
             height: '5ft7in',
             bio: 'this is a bio',
             interest: 'shopping',
-            location: 'London',
+            location: 'Paris',
             image: 'https://www.thesun.co.uk/wp-content/uploads/2017/03/nintchdbpict000196273702.jpg'
           },
           {
@@ -140,7 +141,7 @@ mongoose.connect(
             height: '6ft3in',
             bio: 'this is a bio',
             interest: 'business',
-            location: 'London',
+            location: 'Dublin',
             image: 'https://cdn10.bigcommerce.com/s-x8dfmo/products/3147/images/26205/Richard-Gere-in-Pretty-Woman-Premium-Photograph-and-Poster-1011470__92751.1432420227.1280.1280.jpg?c=2'
           },
           {
@@ -152,7 +153,7 @@ mongoose.connect(
             height: '5ft4in',
             bio: 'this is a bio',
             interest: 'causing trouble',
-            location: 'London',
+            location: 'Madrid',
             image: 'https://images6.fanpop.com/image/photos/33600000/Stacey-american-history-x-33639686-200-200.jpg'
           }
         ])
@@ -161,6 +162,46 @@ mongoose.connect(
         console.log(`${users.length} users created!`)
         return users
       })
+
+      .then((users) => {
+        return Cities.create([
+          
+          {
+            name: 'London',
+            country: 'England',
+            bio: 'London is layered with history, where medieval and Victorian complement a rich and vibrant modern world. The Tower of London and Westminster neighbour local pubs and markets, and time-worn rituals like the changing of the guards take place as commuters rush to catch the Tube. It’s a place where travellers can time-hop through the city, and when they’re weary, do as Londoners do and grab a “cuppa” tea.',
+            image: 'https://london.ac.uk/sites/default/files/styles/promo_medium/public/2018-10/london-aerial-cityscape-river-thames_1.jpg?itok=VADuaEL7',
+            user:users[0]
+          },
+          {
+            name: 'Madrid',
+            country: 'Spain',
+            bio: 'If Madrid feels like a fairytale, it’s partially because so many buildings here have a confectionary, castle-like look to them. Even City Hall is astounding, with its white pinnacles and neo-Gothic features. A self-guided architecture tour can begin by the great bear statue in the central Puerta del Sol. Wander by the fanciful Royal Palace before absorbing the natural beauty of Retiro Park, then visit one of the city’s many art museums. Artistry can also be found on your plate and in your glass, so close out each day sipping Spanish rioja and sampling tapas.',
+            image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/33/e6/bf/caption.jpg?w=700&h=300&s=1',
+            user: users[0]
+          },
+           {
+            name: 'Paris',
+            country: 'France',
+            bio: 'Nowhere else on earth makes the heart swoon like the mention of Paris. The city lures with its magnificent art, architecture, culture, and cuisine, but there’s also a quieter magic waiting to be explored: the quaint cobbled lanes, the sweet patisseries around the corner, and the cozy little bistros that beckon with a glass of Beaujolais. Get ready to make Paris your own.',
+            image: 'https://media-cdn.tripadvisor.com/media/photo-c/768x250/17/15/6d/d6/paris.jpg',
+            user: users[0]
+          },
+          
+          {
+            name: 'Dublin',
+            country: 'Ireland',
+            bio: 'Dublin brings to mind literary giants, Georgian architecture, and Guinness galore. Nights here are alive with pub crawls and spirited music. But the days are also full of revelry, with enchanting architecture, tucked-away bookstores, and singular museums like the Chester Beatty. Green spaces abound, such as the St Stephens Green or Iveagh Gardens. And no trip is complete without a tour of a local distillery, where you can sample local spirits like Jameson or Teeling.',
+            image: 'https://media-cdn.tripadvisor.com/media/photo-s/01/09/e7/36/ha-penny-bridge.jpg',
+            user: users[0]
+          }
+        ])
+      }) 
+      .then(cities => {
+        console.log(`${cities.length} have been created`)
+      })
+
+
       .catch(err => {
         console.log(err)
       })
