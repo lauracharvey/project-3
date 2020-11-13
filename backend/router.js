@@ -7,7 +7,7 @@ const secureRoute = require('./middleware/secureRoute')
 router.route('/users')
   .get(userController.getUsers)
 
-router.route('/user/:userId')
+router.route('/user/:id')
   .get(userController.getSingleUser)
 
 router.route('/signup')

@@ -17,7 +17,7 @@ const UserProfile = (props) => {
       })
   }, [])
 
-  if (!user.name) {
+  if (!user._id) {
     return <div>
       <h2>
         Loading ...
@@ -26,11 +26,22 @@ const UserProfile = (props) => {
   }
 
   return <main>
-    <header>
-      <Navbar/>
-    </header>
     <section className="riderMain">
-      <h1>Hello User</h1>
+      <h1>{user.name}</h1>
+      <img src={user.image} />
+      <h2>Location</h2>
+      <h3>{user.location}</h3>
+      <h2>Age</h2>
+      <h3>{user.age}</h3>
+      <h2>Height</h2>
+      <h3>{user.height}</h3>
+      <h2>Bio</h2>
+      <h3>{user.bio}</h3>
+      <h2>Interests</h2>
+      <h3>{user.interest}</h3>
+    </section>
+    <section>
+      <button>Chat</button>
     </section>
   </main>
 }

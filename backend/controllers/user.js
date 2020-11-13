@@ -46,6 +46,7 @@ function getUsers(req, res) {
 
 function getSingleUser(req, res) {
   const id = req.params.id
+
   User
     .findById(id)
     .then(singleUser => {
