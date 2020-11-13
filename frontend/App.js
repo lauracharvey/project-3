@@ -10,6 +10,7 @@ import Login from './components/Login'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
 import UserProfile from './components/UserProfile'
+import cityList from './components/cityList'
 
 // For environment varibles
 console.log(process.env.hello)
@@ -23,6 +24,7 @@ const App = () => {
       <Route exact path="/login" component={Login} />
       <Route exact path="/users" component={UserList} />
       <Route exact path="/user/:userId" component={UserProfile}/>
+      <Route exact path="/cities" component={cityList}/>
     </Switch>
   </BrowserRouter>
 }
