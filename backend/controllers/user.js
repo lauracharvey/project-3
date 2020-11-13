@@ -44,8 +44,19 @@ function getUsers(req, res) {
     .catch(error => res.send(error))
 }
 
+function getSingleUser(req, res) {
+  const id = req.params.id
+  User
+    .findById(id)
+    .then(singleUser => {
+      res.send(singleUser)
+    })
+    .catch(error => res.send(error))
+}
+
 module.exports = {
   createUser,
   loginUser,
-  getUsers
+  getUsers,
+  getSingleUser
 }

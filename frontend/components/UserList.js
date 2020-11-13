@@ -11,8 +11,8 @@ const UserList = () => {
     // after its launches... need a wee bit of help here. 
     axios.get('/api/users')
       .then(axiosResp => {
-        console.log(axiosResp)
         updateUserData(axiosResp.data)
+        console.log(axiosResp.data)
       })
   }, [])
 
@@ -21,7 +21,7 @@ const UserList = () => {
       <div className="columns is-multiline is-mobile">
         {userData.map((user, index) => {
           return <div key={index} className="column is-one-third-desktop is-half-tablet is-half-mobile">
-            <Link to={`/user/${user.username}`}>
+            <Link to={`/user/${user._id}`}>
               <div className="card">
                 <div className="card-content">
                   <div className="media">
