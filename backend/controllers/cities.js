@@ -1,24 +1,24 @@
 const { default: Axios } = require('axios')
 const City = require('../models/cities')
-const axios = require('axios')
 
-function getCities(req, res){
+
+function getCities(req, res) {
   City
-  .find()
-  .populate('user')
-  .then(citiesList => {
-    res.send(citiesList)
-  })
-  .catch(error => res.send(error))
+    .find()
+    // .populate('user')
+    .then(citiesList => {
+      res.send(citiesList)
+    })
+    .catch(error => res.send(error))
 }
 
-function getSingleCity(req, res){
-  const id = req.params.id
+function getSingleCity(req, res) {
+  const Id = req.params.Id
   City
-  .findById(id)
-  .then(city => {
-    res.send(city)
-  })
+    .findById(Id)
+    .then(city => {
+      res.send(city)
+    })
 }
 
 function addCity(req, res) {

@@ -14,7 +14,7 @@ const citySchema = new mongoose.Schema({
   country: { type: String, required: true },
   bio: { type: String, required: true },
   image: { type: String, required: true },
-  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  user: { type: mongoose.Schema.ObjectId, ref: 'User' },
   comments: [commentSchema]
 })
 
