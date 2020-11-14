@@ -4,7 +4,6 @@ const router = express.Router()
 const userController = require('./controllers/user')
 const citiesController = require('./controllers/cities')
 const secureRoute = require('./middleware/secureRoute')
-const { getCities } = require('./controllers/cities')
 
 router.route('/users')
   .get(userController.getUsers)
@@ -20,11 +19,25 @@ router.route('/login')
 
 router.route('/cities')
   .get(citiesController.getCities)
-  .post(citiesController.addCity)
+  .post(secureRoute, citiesController.addCity)
 
-router.route('/cities/:Id')
+router.route('/cities/:id')
   .get(citiesController.getSingleCity)
-  
+  // logged in user access
+  .delete(secureRoute, citiesController.deleteCity)
+  .put(secureRoute, citiesController.editCity)
+
+
+
+// comments
+router.route('/cities/:cityId/comments')
+  .post(secureRoute, citiesController.createComment)
+
+router.route('/cities/:cityId/comments/:commentId')
+  .put(secureRoute, citiesController.editComment)
+  .delete(secureRoute, citiesController.deleteComment)
+  .get(secureRoute, citiesController.singleComment)
+
 
 
 module.exports = router
