@@ -19,6 +19,10 @@ const Navbar = (props) => {
             <Link to="/login" className="button is-dark">Login</Link> */}
             {localStorage.getItem('token')
               && <Link className="button is-success" to="/users">Profiles</Link>}
+
+            {localStorage.getItem('token')
+              && <Link className="button is-success" to="/cities">Cities</Link>}
+
             {localStorage.getItem('token')
               && <button className="button is-light"
                 onClick={handleLogout}>

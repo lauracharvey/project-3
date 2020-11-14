@@ -18,7 +18,7 @@ const cityList = () => {
       <div className="columns is-multiline is-mobile">
         {cityData.map((city, index) => {
           return <div key={index} className="column is-one-third-desktop is-half-tablet is-half-mobile">
-            <Link to={`/user/${city._id}`}>
+            <Link to={`/cities/${city._id}`}>
               <div className="card">
                 <div className="card-content">
                   <div className="media">
