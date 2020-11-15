@@ -23,7 +23,6 @@ router.route('/cities')
 
 router.route('/cities/:id')
   .get(citiesController.getSingleCity)
-  // logged in user access
   .delete(secureRoute, citiesController.deleteCity)
   .put(secureRoute, citiesController.editCity)
 

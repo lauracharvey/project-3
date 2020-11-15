@@ -22,7 +22,7 @@ const Login = (props) => {
     axios.post('/api/login', loginFormData)
       .then(resp => {
         localStorage.setItem('token', resp.data.token)
-        props.history.push('/users')
+        props.history.push('/cities')
       })
   }
 

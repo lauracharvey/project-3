@@ -15,6 +15,7 @@ function getSingleCity(req, res) {
   const Id = req.params.id
   City
     .findById(Id)
+    .populate('comments.user')
     .then(city => {
       res.send(city)
     })

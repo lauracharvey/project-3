@@ -198,7 +198,7 @@ mongoose.connect(
         ])
       })
       .then(cities => {
-        console.log(`${cities.length} have been created`)
+        console.log(`${cities.length} city have been created`)
       })
 
 

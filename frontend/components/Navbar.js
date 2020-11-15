@@ -18,10 +18,10 @@ const Navbar = (props) => {
             {/* <Link to="/signup" className="button is-dark">Signup</Link>
             <Link to="/login" className="button is-dark">Login</Link> */}
             {localStorage.getItem('token')
-              && <Link className="button is-success" to="/users">Profiles</Link>}
+              && <Link className="button is-dark" to="/cities">Cities</Link>}
 
             {localStorage.getItem('token')
-              && <Link className="button is-success" to="/cities">Cities</Link>}
+              && <Link className="button is-success" to="/cities/add-city">Add City</Link>}
 
             {localStorage.getItem('token')
               && <button className="button is-light"

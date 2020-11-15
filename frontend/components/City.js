@@ -20,17 +20,17 @@ const City = (props) => {
       })
   }, [])
 
-  // if (!city._id) {
-  //   return <div className="section">
-  //     <div className="container">
-  //       <div className="title">
-  //         Loading ...
-  //       </div>
-  //     </div>
-  //   </div>
-  // }
+  if (!city._id) {
+    return <div className="section">
+      <div className="container">
+        <div className="title">
+          Loading ...
+        </div>
+      </div>
+    </div>
+  }
 
-
+  // delete city
   function handleDelete() {
     axios.delete(`/api/cities/${cityId}`, {
       headers: { Authorization: `Bearer ${token}` }
@@ -39,6 +39,8 @@ const City = (props) => {
         props.history.push('/cities')
       })
   }
+
+
 
   // comments section
   function handleComment() {
@@ -63,10 +65,6 @@ const City = (props) => {
   }
 
 
-
-
-
-
   return <div>
     <div className="section">
       <div className="container">
@@ -81,7 +79,7 @@ const City = (props) => {
         {token && <button className="button is-dark" onClick={handleDelete}>
           Remove City
         </button>}
-        {token && <Link className="button is-primary" to={`/characters/edit-character/${city._id}`}>
+        {token && <Link className="button is-primary" to={`/cities/edit-city/${city._id}`}>
           Edit City
         </Link>}
         <div>
@@ -98,7 +96,7 @@ const City = (props) => {
 
             <figure className="media-right">
               <p className="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/128x128.png" />
+                <img src={comment.user.image} />
               </p>
             </figure>
             <div className="media-content">
@@ -117,7 +115,7 @@ const City = (props) => {
               </button>
             </div>}
 
-            {isCreator(comment.user._id) && <Link className="button is-small" to={`/characters/${city._id}/comments/${comment._id}`}>
+            {isCreator(comment.user._id) && <Link className="button is-small" to={`/cities/${city._id}/comments/${comment._id}`}>
               Edit 🖊️
             </Link>}
           </article>
@@ -143,7 +141,7 @@ const City = (props) => {
                 <button
                   onClick={handleComment}
                   className="button is-info">
-                  Submit
+                  Send
                 </button>
               </p>
             </div>
