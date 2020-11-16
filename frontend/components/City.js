@@ -8,11 +8,11 @@ const City = (props) => {
   const [city, updateCity] = useState({})
   const [text, updateText] = useState('')
 
-  const cityId = props.match.params.cityId
+  const cityName = props.match.params.cityName
   const token = localStorage.getItem('token')
 
   useEffect(() => {
-    axios.get(`/api/cities/${cityId}`)
+    axios.get(`/api/cities/${cityName}`)
       .then(resp => {
         const data = resp.data
         // console.log(data)
@@ -40,8 +40,6 @@ const City = (props) => {
       })
   }
 
-
-
   // comments section
   function handleComment() {
     axios.post(`/api/cities/${city._id}/comments`, { text }, {
@@ -64,7 +62,6 @@ const City = (props) => {
       })
   }
 
-
   return <div>
     <div className="section">
       <div className="container">
@@ -81,6 +78,9 @@ const City = (props) => {
         </button>}
         {token && <Link className="button is-primary" to={`/cities/edit-city/${city._id}`}>
           Edit City
+        </Link>}
+        {token && <Link className="button is-dark" to={`/cities/${city.name}/users`}>
+          Chat to Users in {city.name}
         </Link>}
         <div>
           <br />
@@ -120,7 +120,6 @@ const City = (props) => {
             </Link>}
           </article>
         })}
-
 
         {/*post comments */}
         <article className="media">

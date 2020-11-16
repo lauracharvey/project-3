@@ -45,7 +45,7 @@ mongoose.connect(
             height: '6ft1in',
             bio: 'this is a bio',
             interest: 'basketball',
-            location: 'London',
+            location: 'Madrid',
             image: 'https://images-na.ssl-images-amazon.com/images/I/31XCoK-Pc3L._AC_.jpg'
           },
           {
@@ -57,7 +57,7 @@ mongoose.connect(
             height: '6ft',
             bio: 'this is a bio',
             interest: 'boating',
-            location: 'London',
+            location: 'Madrid',
             image: 'https://images6.fanpop.com/image/photos/37200000/Noah-Calhoun-rkebfan4ever-37249868-236-300.jpg'
           },
           {
@@ -69,7 +69,7 @@ mongoose.connect(
             height: '5ft4in',
             bio: 'this is a bio',
             interest: 'laughter',
-            location: 'Madrid',
+            location: 'Dublin',
             image: 'https://imagesvc.meredithcorp.io/v3/mm/image?q=85&c=sc&poi=face&w=2000&h=1333&url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F24%2F2014%2F05%2F2302801_beaut_mcdnote_ec028-1.jpg'
           },
           {

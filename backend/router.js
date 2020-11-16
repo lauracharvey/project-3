@@ -21,12 +21,10 @@ router.route('/cities')
   .get(citiesController.getCities)
   .post(secureRoute, citiesController.addCity)
 
-router.route('/cities/:id')
+router.route('/cities/:cityName')
   .get(citiesController.getSingleCity)
   .delete(secureRoute, citiesController.deleteCity)
   .put(secureRoute, citiesController.editCity)
-
-
 
 // comments
 router.route('/cities/:cityId/comments')

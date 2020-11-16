@@ -1,6 +1,5 @@
 const City = require('../models/cities')
 
-
 function getCities(req, res) {
   City
     .find()
@@ -12,9 +11,9 @@ function getCities(req, res) {
 }
 
 function getSingleCity(req, res) {
-  const Id = req.params.id
+  const cityName = req.params.name
   City
-    .findById(Id)
+    .findOne(cityName)
     .populate('comments.user')
     .then(city => {
       res.send(city)
@@ -65,7 +64,6 @@ function editCity(req, resp) {
     })
     .catch(error => resp.send(error))
 }
-
 
 //comments
 

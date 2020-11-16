@@ -15,9 +15,7 @@ import cityList from './components/cityList'
 import EditComment from './components/EditComment'
 import AddCity from './components/AddCity'
 import EditCity from './components/EditCity'
-
-
-
+import UserListByCity from './components/UserListByCity'
 
 // For environment varibles
 console.log(process.env.hello)
@@ -30,11 +28,11 @@ const App = () => {
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/cities" component={cityList} />
+      <Route exact path="/cities/:cityName" component={City} />
       <Route exact path="/cities/add-city" component={AddCity} />
       <Route exact path="/cities/edit-city/:cityId" component={EditCity} />
-      <Route exact path="/cities/:cityId" component={City} />
       <Route exact path="/cities/:cityId/comments/:commentId" component={EditComment} />
-
+      <Route exact path="/cities/:cityName/users" component={UserListByCity}/>
       <Route exact path="/users" component={UserList} />
       <Route exact path="/user/:userId" component={UserProfile} />
 
