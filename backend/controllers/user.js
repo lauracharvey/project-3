@@ -50,15 +50,20 @@ function getSingleUser(req, res) {
 
   User
     .findById(id)
+    .populate('user')
     .then(singleUser => {
       res.send(singleUser)
     })
     .catch(error => res.send(error))
 }
 
+
+
 module.exports = {
   createUser,
   loginUser,
   getUsers,
   getSingleUser
+
+
 }

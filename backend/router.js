@@ -11,6 +11,7 @@ router.route('/users')
 router.route('/user/:id')
   .get(userController.getSingleUser)
 
+
 router.route('/signup')
   .post(userController.createUser)
 
