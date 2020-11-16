@@ -10,6 +10,7 @@ router.route('/users')
 
 router.route('/user/:id')
   .get(userController.getSingleUser)
+  .put(secureRoute, userController.updateUserProfile)
 
 router.route('/signup')
   .post(userController.createUser)

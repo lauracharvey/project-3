@@ -5,7 +5,6 @@ const Navbar = (props) => {
 
   function handleLogout() {
     localStorage.removeItem('token')
-
     props.history.push('/')
   }
 
@@ -22,6 +21,9 @@ const Navbar = (props) => {
 
             {localStorage.getItem('token')
               && <Link className="button is-success" to="/cities/add-city">Add City</Link>}
+
+            {localStorage.getItem('token') 
+            && <Link to={`user/userId/update`}><button className="button is-light">Edit Profile</button></Link>}
 
             {localStorage.getItem('token')
               && <button className="button is-light"

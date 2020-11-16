@@ -56,9 +56,27 @@ function getSingleUser(req, res) {
     .catch(error => res.send(error))
 }
 
+function updateUserProfile(req, res) {
+  const id = req.params.id
+  const body = req.body
+  const currentUser = req.currentUser
+
+  User
+    .findById(id)
+    .then(user => {
+      if (!user._id.equals(currentUser._id) && !user)
+        return res.send({ message: 'no user found' })
+      user.set(body)
+      user.save()
+      res.send(user)
+    })
+    .catch(error => res.send(error))
+}
+
 module.exports = {
   createUser,
   loginUser,
   getUsers,
-  getSingleUser
+  getSingleUser,
+  updateUserProfile
 }

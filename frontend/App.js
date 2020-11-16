@@ -16,9 +16,7 @@ import EditComment from './components/EditComment'
 import AddCity from './components/AddCity'
 import EditCity from './components/EditCity'
 import UserListByCity from './components/UserListByCity'
-
-// For environment varibles
-console.log(process.env.hello)
+import UpdateUserProfile from './components/UpdateUserProfile'
 
 const App = () => {
   return <BrowserRouter>
@@ -35,6 +33,7 @@ const App = () => {
       <Route exact path="/cities/:cityName/users" component={UserListByCity}/>
       <Route exact path="/users" component={UserList} />
       <Route exact path="/user/:userId" component={UserProfile} />
+      <Route exact path="/user/:userId/update" component={UpdateUserProfile} />
 
     </Switch>
   </BrowserRouter>
