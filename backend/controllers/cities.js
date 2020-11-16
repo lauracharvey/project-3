@@ -11,9 +11,9 @@ function getCities(req, res) {
 }
 
 function getSingleCity(req, res) {
-  const cityName = req.params.name
+  const cityName = req.params.cityName
   City
-    .findOne(cityName)
+    .findOne({ name: { $regex: cityName, $options: 'i' } })
     .populate('comments.user')
     .then(city => {
       res.send(city)
