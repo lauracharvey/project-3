@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const EditCity = (props) => {
-  const cityId = props.match.params.cityId
+  const cityName = props.match.params.cityName
   const inputFields = ['name', 'country', 'bio', 'image']
 
   const [editCityFormData, setEditCityFormData] = useState({
@@ -13,12 +13,12 @@ const EditCity = (props) => {
   })
 
   useEffect(() => {
-    axios.get(`/api/cities/${cityId}`)
+    axios.get(`/api/cities/${cityName}`)
       .then(resp => {
         setEditCityFormData(resp.data)
       })
-  },[])
-  
+  }, [])
+
   function handleChange(event) {
     const data = {
       ...editCityFormData,
@@ -31,7 +31,7 @@ const EditCity = (props) => {
     event.preventDefault()
     const token = localStorage.getItem('token')
 
-    axios.put(`/api/cities/${cityId}`, editCityFormData , {
+    axios.put(`/api/cities/${cityName}`, editCityFormData, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
@@ -46,7 +46,7 @@ const EditCity = (props) => {
           <label>{field}</label>
           <input
             type="text"
-            onChange={handleChange} 
+            onChange={handleChange}
             value={editCityFormData[field]}
             name={field}
 

@@ -6,7 +6,7 @@ import axios from 'axios'
 const EditComment = (props) => {
   const [comment, updateComment] = useState({})
 
-  const cityId = props.match.params.cityId
+  const cityName = props.match.params.cityName
   const commentId = props.match.params.commentId
   // console.log(commentId)
 
@@ -14,7 +14,7 @@ const EditComment = (props) => {
   const token = localStorage.getItem('token')
 
   useEffect(() => {
-    axios.get(`/api/cities/${cityId}/comments/${commentId}`, {
+    axios.get(`/api/cities/${cityName}/comments/${commentId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
@@ -26,13 +26,13 @@ const EditComment = (props) => {
 
 
   function handleUpdateComment() {
-    axios.put(`/api/cities/${cityId}/comments/${commentId}`, comment, {
+    axios.put(`/api/cities/${cityName}/comments/${commentId}`, comment, {
       headers: { Authorization: `Bearer ${token}` }
 
     })
       .then(resp => {
         // console.log(resp.data)
-        props.history.push(`/cities/${cityId}`)
+        props.history.push(`/cities/${cityName}`)
       })
 
   }

@@ -20,25 +20,25 @@ const UserListByCity = (props) => {
     return filteredUsers
   }
 
-  console.log(filteredUsers())
+  // console.log(filteredUsers())
 
   return <main>
     <section>
-        {filteredUsers().map((user, index) => {
-          return <div key={index}>
-            <Link to={`/user/${user._id}`}>
+      {filteredUsers().map((user, index) => {
+        return <div key={index}>
+          <Link to={`/user/${user._id}`}>
+            <div>
               <div>
-                <div>
-                  <img src={user.image} alt={user.username} />
-                </div>
-                <div>
-                  <h2>{user.username}</h2>
-                </div>
+                <img src={user.image} alt={user.username} />
               </div>
-            </Link>
-          </div>
-        })}
-      </section>
+              <div>
+                <h2>{user.username}</h2>
+              </div>
+            </div>
+          </Link>
+        </div>
+      })}
+    </section>
   </main>
 
 }

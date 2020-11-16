@@ -26,14 +26,16 @@ const App = () => {
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/cities" component={CityList} />
-      <Route exact path="/cities/:cityName" component={City} />
       <Route exact path="/cities/add-city" component={AddCity} />
-      <Route exact path="/cities/edit-city/:cityId" component={EditCity} />
-      <Route exact path="/cities/:cityId/comments/:commentId" component={EditComment} />
+
+      <Route exact path="/cities/:cityName" component={City} />
+      <Route exact path="/cities/:cityName/comments/:commentId" component={EditComment} />
+
+      <Route exact path="/cities/edit-city/:cityName" component={EditCity} />
       <Route exact path="/cities/:cityName/users" component={UserListByCity} />
       <Route exact path="/users" component={UserList} />
-      <Route exact path="/user/:userId" component={UserProfile} />
       <Route exact path="/user/:userId/update" component={UpdateUserProfile} />
+      <Route exact path="/user/:userId" component={UserProfile} />
 
     </Switch>
   </BrowserRouter>
