@@ -50,6 +50,7 @@ function getSingleUser(req, res) {
 
   User
     .findById(id)
+    .populate('user')
     .then(singleUser => {
       res.send(singleUser)
     })

@@ -30,7 +30,7 @@ function addCity(req, res) {
     .catch(error => res.send(error))
 }
 
-function deleteCity(req, resp) {
+function deleteCity(req, res) {
   const id = req.params.id
   const currentUser = req.currentUser
   // console.log(`id : ${id} , ${currentUser.email}`)
@@ -38,17 +38,17 @@ function deleteCity(req, resp) {
     .findById(id)
     .then(city => {
       if (!city.user.equals(currentUser._id)) {
-        return resp.status(401).send({ message: 'Unauthorized to delete' })
+        return res.status(401).send({ message: 'Unauthorized to delete' })
       }
 
       city.deleteOne()
-      resp.send({ message: '⤵️You successfully deleted the element👌', city })
+      res.send({ message: '⤵️You successfully deleted the element👌', city })
     })
-    .catch(error => resp.send(error))
+    .catch(error => res.send(error))
 }
 
 
-function editCity(req, resp) {
+function editCity(req, res) {
   const id = req.params.id
   const body = req.body
   const currentUser = req.currentUser
@@ -56,13 +56,13 @@ function editCity(req, resp) {
   City
     .findById(id)
     .then(city => {
-      if (!city.user.equals(currentUser._id) && !city) return resp.send({ message: 'no city found' })
+      if (!city.user.equals(currentUser._id) && !city) return res.send({ message: 'no city found' })
       city.set(body)
       city.save()
-      resp.send(city)
+      res.send(city)
 
     })
-    .catch(error => resp.send(error))
+    .catch(error => res.send(error))
 }
 
 //comments
