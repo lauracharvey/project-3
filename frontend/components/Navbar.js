@@ -1,45 +1,34 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { getUserId } from '../lib/auth'
-
+import Logo from '../images/Logo.jpg'
 
 const Navbar = (props) => {
   const userId = getUserId()
-  // console.log(userId)
   function handleLogout() {
     localStorage.removeItem('token')
     props.history.push('/')
   }
 
+  return <nav>
+    <Link to="/cities">
+      <button className="darkButton">Home</button>
+    </Link>
 
-  return <nav className="navbar" role="navigation" aria-label="main navigation">
-    <div className="navbar-menu is-active">
-      <div className="navbar-end">
-        <div className="navbar-item">
-          <div className="buttons">
-            <Link to="/" className="button is-dark">Home</Link>
-            {/* <Link to="/signup" className="button is-dark">Signup</Link>
-            <Link to="/login" className="button is-dark">Login</Link> */}
-            {localStorage.getItem('token')
-              && <Link className="button is-dark" to="/cities">Cities</Link>}
+    {localStorage.getItem('token')
+      && <Link to="/cities/add-city">
+        <button className="darkButton">Add City</button>
+      </Link>}
 
-            {localStorage.getItem('token')
-              && <Link className="button is-success" to="/cities/add-city">Add City</Link>}
+    <img src={Logo} alt="Logo" />
 
-            {localStorage.getItem('token')
-              && <Link to={`/user/${userId}/update`}>
-                <button className="button is-light">Edit Profile</button></Link>}
+    {localStorage.getItem('token')
+      && <Link to={`/user/${userId}/update`}>
+        <button>Edit Profile</button>
+      </Link>}
 
-            {localStorage.getItem('token')
-              && <button className="button is-light"
-                onClick={handleLogout}>
-                Logout
-              </button>}
-
-          </div>
-        </div>
-      </div>
-    </div>
+    {localStorage.getItem('token')
+      && <button onClick={handleLogout}>Logout</button>}
   </nav>
 }
 

@@ -6,7 +6,6 @@ import './styles/style.scss'
 import 'bulma'
 
 import Signup from './components/Signup'
-import Login from './components/Login'
 import Home from './components/Home'
 import UserProfile from './components/UserProfile'
 import City from './components/City'
@@ -22,7 +21,6 @@ const App = () => {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/signup" component={Signup} />
-      <Route exact path="/login" component={Login} />
       <Route exact path="/cities" component={CityList} />
       <Route exact path="/cities/add-city" component={AddCity} />
 

@@ -1,17 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../images/Logo.jpg'
+import axios from 'axios'
 
-const Home = () => {
+  const Home = (props) => {
 
-  return <main className="homeMain">
-      <img className="hero" src={Logo} alt="logo"/>
-      <input className="homeInput" type="text" placeholder="dev@dev.com"></input>
-      <input className="homeInput" type="password" placeholder="********"></input>
-    <Link to="/login"><button>Login</button></Link>
-    <p>not registered yet?</p>
-    <Link to="/signup"><button>Signup</button></Link>
-  </main>
-}
+    const [loginFormData, updateLoginFormData] = useState({
+      email: '',
+      password: ''
+    })
+  
+    function handleChange(event) {
+      const data = {
+        ...loginFormData,
+        [event.target.name]: event.target.value
+      }
+      updateLoginFormData(data)
+    }
+  
+    function handleSubmit(event) {
+      event.preventDefault()
+  
+      axios.post('/api/login', loginFormData)
+        .then(resp => {
+          localStorage.setItem('token', resp.data.token)
+          props.history.push('/cities')
+        })
+    }
 
-export default Home
+    return <main className="homeMain">
+      <img className="hero" src={Logo} alt="logo" />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          onChange={handleChange}
+          value={loginFormData.email}
+          name="email"
+          placeholder="dev@developer.com"
+        />
+        <input
+          type="password"
+          onChange={handleChange}
+          value={loginFormData.password}
+          name="password"
+          placeholder="********"
+        />
+        <button>Login</button>
+      </form>
+      <p>not registered yet?</p>
+      <Link to="/signup"><button>Signup</button></Link>
+    </main>
+  }
+
+  export default Home
