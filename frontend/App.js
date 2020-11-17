@@ -7,7 +7,6 @@ import 'bulma'
 
 import Signup from './components/Signup'
 import Login from './components/Login'
-import Navbar from './components/Navbar'
 import Home from './components/Home'
 import UserProfile from './components/UserProfile'
 import City from './components/City'
@@ -20,7 +19,6 @@ import UpdateUserProfile from './components/UpdateUserProfile'
 
 const App = () => {
   return <BrowserRouter>
-    <Navbar />
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/signup" component={Signup} />
