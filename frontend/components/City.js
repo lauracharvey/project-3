@@ -15,12 +15,11 @@ const City = (props) => {
     axios.get(`/api/cities/${cityName}`)
       .then(resp => {
         const data = resp.data
-        // console.log(data)
         updateCity(data)
       })
   }, [])
 
-  if (!city._id) {
+  if (!city.name) {
     return <div className="section">
       <div className="container">
         <div className="title">
@@ -30,9 +29,10 @@ const City = (props) => {
     </div>
   }
 
+
   // delete city
   function handleDelete() {
-    axios.delete(`/api/cities/${cityId}`, {
+    axios.delete(`/api/cities/${cityName}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(() => {
@@ -42,7 +42,7 @@ const City = (props) => {
 
   // comments section
   function handleComment() {
-    axios.post(`/api/cities/${city._id}/comments`, { text }, {
+    axios.post(`/api/cities/${cityName}/comments`, { text }, {
       headers: { Authorization: `Bearer ${token}` }
 
     })
@@ -54,7 +54,7 @@ const City = (props) => {
   }
 
   function handleDeleteComment(commentId) {
-    axios.delete(`/api/cities/${city._id}/comments/${commentId}`, {
+    axios.delete(`/api/cities/${cityName}/comments/${commentId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
@@ -73,10 +73,10 @@ const City = (props) => {
         <h2 className="subtitle">{city.bio}</h2>
 
 
-        {token && <button className="button is-dark" onClick={handleDelete}>
+        {token && city && isCreator(city.user._id) && < button className="button is-dark" onClick={handleDelete}>
           Remove City
         </button>}
-        {token && <Link className="button is-primary" to={`/cities/edit-city/${city._id}`}>
+        {token && city && isCreator(city.user._id) && < Link className="button is-primary" to={`/cities/edit-city/${cityName}`}>
           Edit City
         </Link>}
         {token && <Link className="button is-dark" to={`/cities/${city.name}/users`}>
@@ -115,7 +115,7 @@ const City = (props) => {
               </button>
             </div>}
 
-            {isCreator(comment.user._id) && <Link className="button is-small" to={`/cities/${city._id}/comments/${comment._id}`}>
+            {isCreator(comment.user._id) && <Link className="button is-small" to={`/cities/${cityName}/comments/${comment._id}`}>
               Edit 🖊️
             </Link>}
           </article>
@@ -148,10 +148,10 @@ const City = (props) => {
         </article>
       </div>
 
-    </div>
+    </div >
 
 
-  </div>
+  </div >
 }
 
 export default City

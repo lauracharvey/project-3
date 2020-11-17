@@ -14,6 +14,7 @@ function getSingleCity(req, res) {
   const cityName = req.params.cityName
   City
     .findOne({ name: { $regex: cityName, $options: 'i' } })
+    .populate('user')
     .populate('comments.user')
     .then(city => {
       res.send(city)
@@ -31,11 +32,11 @@ function addCity(req, res) {
 }
 
 function deleteCity(req, res) {
-  const id = req.params.id
+  const cityName = req.params.cityName
   const currentUser = req.currentUser
   // console.log(`id : ${id} , ${currentUser.email}`)
   City
-    .findById(id)
+    .findOne({ name: { $regex: cityName, $options: 'i' } })
     .then(city => {
       if (!city.user.equals(currentUser._id)) {
         return res.status(401).send({ message: 'Unauthorized to delete' })
@@ -49,14 +50,15 @@ function deleteCity(req, res) {
 
 
 function editCity(req, res) {
-  const id = req.params.id
+  const cityName = req.params.cityName
   const body = req.body
   const currentUser = req.currentUser
 
   City
-    .findById(id)
+    .findOne({ name: { $regex: cityName, $options: 'i' } })
     .then(city => {
-      if (!city.user.equals(currentUser._id) && !city) return res.send({ message: 'no city found' })
+      if (!city.user.equals(currentUser._id) || !city)
+        return res.send({ message: 'no city found' })
       city.set(body)
       city.save()
       res.send(city)
@@ -70,8 +72,10 @@ function editCity(req, res) {
 function createComment(req, res) {
   const comment = req.body
   comment.user = req.currentUser
+  const cityName = req.params.cityName
+
   City
-    .findById(req.params.cityId)
+    .findOne({ name: { $regex: cityName, $options: 'i' } })
     .populate('comments.user')
     .then(city => {
       if (!city) return res.status(404).send({ message: 'Not found' })
@@ -85,8 +89,10 @@ function createComment(req, res) {
 }
 
 function editComment(req, res) {
+  const cityName = req.params.cityName
+
   City
-    .findById(req.params.cityId)
+    .findOne({ name: { $regex: cityName, $options: 'i' } })
     .populate('comments.user')
     .then(city => {
       if (!city) return res.status(404).send({ message: 'Not found' })
@@ -104,8 +110,10 @@ function editComment(req, res) {
 }
 
 function deleteComment(req, res) {
+  const cityName = req.params.cityName
+
   City
-    .findById(req.params.cityId)
+    .findOne({ name: { $regex: cityName, $options: 'i' } })
     .populate('comments.user')
     .then(city => {
       if (!city) return res.status(404).send({ message: 'Not found' })
@@ -124,17 +132,19 @@ function deleteComment(req, res) {
 }
 
 function singleComment(req, res) {
+  const cityName = req.params.cityName
+
   City
-    .findById(req.params.cityId)
+    .findOne({ name: { $regex: cityName, $options: 'i' } })
     .populate('comments.user')
     .then(city => {
       if (!city) return res.status(404).send({ message: 'Not found' })
 
       const comment = city.comments.id(req.params.commentId)
 
-      // if (!comment.user.equals(req.currentUser._id)) {
-      //   return res.status(401).send({ message: 'Unauthorized' })
-      // }
+      if (!comment.user.equals(req.currentUser._id)) {
+        return res.status(401).send({ message: 'Unauthorized' })
+      }
 
       return comment
 

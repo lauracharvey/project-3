@@ -29,10 +29,10 @@ router.route('/cities/:cityName')
   .put(secureRoute, citiesController.editCity)
 
 // comments
-router.route('/cities/:cityId/comments')
+router.route('/cities/:cityName/comments')
   .post(secureRoute, citiesController.createComment)
 
-router.route('/cities/:cityId/comments/:commentId')
+router.route('/cities/:cityName/comments/:commentId')
   .put(secureRoute, citiesController.editComment)
   .delete(secureRoute, citiesController.deleteComment)
   .get(secureRoute, citiesController.singleComment)

@@ -9,7 +9,7 @@ function createUser(req, res) {
   User
     .create(body)
     .then(user => {
-      console.log(user)
+      // console.log(user)
       res.send(user)
     })
     .catch(error => res.send(error))
@@ -22,20 +22,17 @@ function loginUser(req, res) {
       if (!user.validatePassword(req.body.password)) {
         return res.status(401).send({ message: 'Unauthorized' })
       }
-
       const token = jwt.sign(
         { sub: user._id },
         secret,
         { expiresIn: '48h' }
       )
-
       res.status(202).send({ token, message: 'Login was successful!' })
     })
 
 }
 
 function getUsers(req, res) {
-  const body = req.body
   User
     .find()
     .populate('user')
@@ -47,7 +44,6 @@ function getUsers(req, res) {
 
 function getSingleUser(req, res) {
   const id = req.params.id
-
   User
     .findById(id)
     .populate('user')
@@ -61,11 +57,10 @@ function updateUserProfile(req, res) {
   const id = req.params.id
   const body = req.body
   const currentUser = req.currentUser
-
   User
     .findById(id)
     .then(user => {
-      if (!user._id.equals(currentUser._id) && !user)
+      if (!user._id.equals(currentUser._id) || !user)
         return res.send({ message: 'no user found' })
       user.set(body)
       user.save()

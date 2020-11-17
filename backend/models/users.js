@@ -26,19 +26,21 @@ userSchema
 
 userSchema
   .pre('validate', function checkPassword(next) {
-    if (this.password !== this._passwordConfirmation) {
-
-      this.invalidate('passwordConfirmation', 'should match password')
+    if (this.isModified('password') && this._passwordConfirmation !== this.password) {
+      this.invalidate('passwordConfirmation', 'should match')
     }
     next()
   })
-
+// we got this from Kianna, it will prevent the console to complain about password matching
 userSchema
   .pre('save', function hashPassword(next) {
-    this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync())
+    if (this.isModified('password')) {
+      this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync())
+    }
     next()
 
   })
+
 
 userSchema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password)

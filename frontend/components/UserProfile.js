@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const UserProfile = (props) => {
   const userId = props.match.params.userId
   const [user, updateUser] = useState({})
 
-  console.log(userId)
+  // console.log(userId)
 
   useEffect(() => {
     axios.get(`/api/user/${userId}`)
       .then(resp => {
-        console.log(resp.data)
+        // console.log(resp.data)
         updateUser(resp.data)
       })
   }, [])
@@ -24,6 +25,7 @@ const UserProfile = (props) => {
   }
 
   return <main>
+
     <section className="riderMain">
       <h1>{user.name}</h1>
       <img src={user.image} />
@@ -41,6 +43,8 @@ const UserProfile = (props) => {
     <section>
       <button>Chat</button>
     </section>
+
+
   </main>
 }
 

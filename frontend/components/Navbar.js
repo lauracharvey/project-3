@@ -1,12 +1,16 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import { getUserId } from '../lib/auth'
+
 
 const Navbar = (props) => {
-
+  const userId = getUserId()
+  // console.log(userId)
   function handleLogout() {
     localStorage.removeItem('token')
     props.history.push('/')
   }
+
 
   return <nav className="navbar" role="navigation" aria-label="main navigation">
     <div className="navbar-menu is-active">
@@ -22,8 +26,9 @@ const Navbar = (props) => {
             {localStorage.getItem('token')
               && <Link className="button is-success" to="/cities/add-city">Add City</Link>}
 
-            {localStorage.getItem('token') 
-            && <Link to={`user/userId/update`}><button className="button is-light">Edit Profile</button></Link>}
+            {localStorage.getItem('token')
+              && <Link to={`/user/${userId}/update`}>
+                <button className="button is-light">Edit Profile</button></Link>}
 
             {localStorage.getItem('token')
               && <button className="button is-light"
