@@ -79,7 +79,7 @@ const City = (props) => {
         {token && city && isCreator(city.user._id) && < Link className="button is-primary" to={`/cities/edit-city/${cityName}`}>
           Edit City
         </Link>}
-        {token && <Link className="button is-dark" to={`/cities/${city.name}/users`}>
+        {token && <Link className="button is-dark" to={'../chat/src/components/Join'}>
           Chat to Users in {city.name}
         </Link>}
         <div>
