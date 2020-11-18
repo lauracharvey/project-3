@@ -38,17 +38,19 @@ const CityList = () => {
     </section>
     <section className="cardsSection">
       {searchCity().map((city, index) => {
-        return <div key={index} className="cardOuter">
+        return <div key={index}>
           <Link to={`/cities/${city.name}`}>
-            <div className="imageContainer">
-              <img src={city.image} alt={city.name}/>
+            <div className="cardOuter">
+              <div className="imageContainer">
+                <img src={city.image} alt={city.name} />
+              </div>
+              <div className="textContainer">
+                <h2>{city.name}</h2>
+                <h3>{city.country}</h3>
+              </div>
             </div>
-            
-            <h2>{city.name}</h2>
-            <h3>{city.country}</h3>
           </Link>
         </div>
-
       })}
     </section>
   </main>
