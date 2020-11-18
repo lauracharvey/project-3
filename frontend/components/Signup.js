@@ -55,7 +55,7 @@ const Signup = (props) => {
         if (resp.data.errors) {
           updateErrors(resp.data.errors)
         } else {
-          props.history.push('/login')
+          props.history.push('/')
         }
       })
 

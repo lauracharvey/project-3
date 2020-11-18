@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const User = require('./models/users')
 const Cities = require('./models/cities')
+const axios = require('axios')
+
 
 mongoose.connect(
   'mongodb://localhost/sortdb',
@@ -162,46 +164,36 @@ mongoose.connect(
         console.log(`${users.length} users created!`)
         return users
       })
-
       .then((users) => {
-        return Cities.create([
+        const imageMap = {
+          Kabul: 'https://images.unsplash.com/photo-1602394696015-cffefafffae8?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE4MzcyN30'
+        }
 
-          {
-            name: 'London',
-            country: 'England',
-            bio: 'London is layered with history, where medieval and Victorian complement a rich and vibrant modern world. The Tower of London and Westminster neighbour local pubs and markets, and time-worn rituals like the changing of the guards take place as commuters rush to catch the Tube. It’s a place where travellers can time-hop through the city, and when they’re weary, do as Londoners do and grab a “cuppa” tea.',
-            image: 'https://london.ac.uk/sites/default/files/styles/promo_medium/public/2018-10/london-aerial-cityscape-river-thames_1.jpg?itok=VADuaEL7',
-            user: users[0]
-          },
-          {
-            name: 'Madrid',
-            country: 'Spain',
-            bio: 'If Madrid feels like a fairytale, it’s partially because so many buildings here have a confectionary, castle-like look to them. Even City Hall is astounding, with its white pinnacles and neo-Gothic features. A self-guided architecture tour can begin by the great bear statue in the central Puerta del Sol. Wander by the fanciful Royal Palace before absorbing the natural beauty of Retiro Park, then visit one of the city’s many art museums. Artistry can also be found on your plate and in your glass, so close out each day sipping Spanish rioja and sampling tapas.',
-            image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/33/e6/bf/caption.jpg?w=700&h=300&s=1',
-            user: users[0]
-          },
-          {
-            name: 'Paris',
-            country: 'France',
-            bio: 'Nowhere else on earth makes the heart swoon like the mention of Paris. The city lures with its magnificent art, architecture, culture, and cuisine, but there’s also a quieter magic waiting to be explored: the quaint cobbled lanes, the sweet patisseries around the corner, and the cozy little bistros that beckon with a glass of Beaujolais. Get ready to make Paris your own.',
-            image: 'https://media-cdn.tripadvisor.com/media/photo-c/768x250/17/15/6d/d6/paris.jpg',
-            user: users[0]
-          },
-
-          {
-            name: 'Dublin',
-            country: 'Ireland',
-            bio: 'Dublin brings to mind literary giants, Georgian architecture, and Guinness galore. Nights here are alive with pub crawls and spirited music. But the days are also full of revelry, with enchanting architecture, tucked-away bookstores, and singular museums like the Chester Beatty. Green spaces abound, such as the St Stephens Green or Iveagh Gardens. And no trip is complete without a tour of a local distillery, where you can sample local spirits like Jameson or Teeling.',
-            image: 'https://media-cdn.tripadvisor.com/media/photo-s/01/09/e7/36/ha-penny-bridge.jpg',
-            user: users[0]
-          }
-        ])
+        const promise = new Promise((resolve) => {
+          axios.get('https://restcountries.eu/rest/v2/all')
+            .then((resp) => {
+              const cityInfo = resp.data.filter(country => country.capital)
+                .map(country => {
+                  return {
+                    name: country.capital,
+                    country: country.name,
+                    lat: country.latlng[0],
+                    lng: country.latlng[1],
+                    user: users[0],
+                    image: imageMap[country.capital] ? imageMap[country.capital] : ''
+                  }
+                })
+              resolve(cityInfo)
+            })
+        })
+        return promise
+      })
+      .then((fullData) => {
+        return Cities.create(fullData)
       })
       .then(cities => {
         console.log(`${cities.length} city have been created`)
       })
-
-
       .catch(err => {
         console.log(err)
       })

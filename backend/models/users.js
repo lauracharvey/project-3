@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   age: { type: Number },
-  height: { type: String, required: true },
+  height: { type: String },
   bio: { type: String, required: true },
   interest: { type: String, required: true },
   location: { type: String, required: true },
@@ -45,5 +45,11 @@ userSchema
 userSchema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password)
 }
+
+// this will make sure the email has the right format 
+userSchema.path('email').validate(function (email) {
+  const emailRegex = /^([\w-.]+@([\w-]+\.)+[\w-]{2,4})?$/
+  return emailRegex.test(email)
+})
 
 module.exports = mongoose.model('User', userSchema)

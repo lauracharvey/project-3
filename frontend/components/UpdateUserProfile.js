@@ -4,6 +4,8 @@ import axios from 'axios'
 const UpdateUserProfile = (props) => {
   const userId = props.match.params.userId
   const [cityData, updateCityData] = useState([])
+  const token = localStorage.getItem('token')
+
 
   const [formData, updateFormData] = useState({
     username: '',
@@ -50,22 +52,26 @@ const UpdateUserProfile = (props) => {
       ...formData,
       location: `${event.target.value}`
     }
-    // console.log(data)
     updateFormData(data)
   }
 
   function handleSubmit(event) {
     event.preventDefault()
-
-    // console.log(formData)
-
-    const token = localStorage.getItem('token')
     axios.put(`/api/user/${userId}`, formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
-      .then(resp => {
-        // console.log(resp.data)
+      .then(res => {
         props.history.push(`/user/${userId}`)
+      })
+  }
+
+  // delete profile
+  function handleDelete() {
+    axios.delete(`/api/user/${userId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(() => {
+        props.history.push('/')
       })
   }
 
@@ -80,7 +86,7 @@ const UpdateUserProfile = (props) => {
           <input
             type="text"
             onChange={handleData}
-            value={formData[field]}
+            value={formData[field] || ''}
             name={field}
           />
         </div>
@@ -95,7 +101,11 @@ const UpdateUserProfile = (props) => {
       </label>
 
       <button>Update</button>
+
     </form>
+    <button onClick={handleDelete}>
+      Delete Profile
+    </button>
   </main >
 }
 
