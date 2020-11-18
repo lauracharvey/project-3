@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600&display=swap');
 
 :root {
   --background: #ffffff;
@@ -68,15 +68,15 @@ nav {
 
   img {
     margin: 30px;
-    width: 400px;
+    width: 350px;
   }
 
   form {
-    width: 400px;
+    width: 350px;
 
     input {
-      width: 350px;
-      height: 50px;
+      width: 300px;
+      height: 45px;
       margin: 10px;
       font-family: var(--font);
       font-size: 20px;
@@ -87,12 +87,12 @@ nav {
   }
 
   button {
-    width: 350px;
-    height: 50px;
+    width: 300px;
+    height: 45px;
     margin: 15px;
     border: solid 2px var(--extraLight);
     font-weight: 400;
-    font-size: 20px;
+    font-size: 16px;
     background: var(--grey);
   }
 }
@@ -136,9 +136,162 @@ nav {
   align-items: center;
   justify-content: center;
 
-  img {
+  .imageContainer {
     width: 80%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    img {
+      display: inline-block;
+      overflow: hidden;
+    }
+  }
+
+  .textContainer {
+    width: 100%;
     height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+
+    h2 {
+      font-weight: 600;
+      font-size: 28px;
+      color: var(--dark);
+    }
+    
+    h3 {
+      font-size: 20px;
+      color: var(--mid);
+    }
   }
 }
 
+// SINGLE CITY PAGE
+
+.singleCityMain {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .cityInfo {
+    width: 700px;
+
+    img {
+      margin: 30px 0 10px 0;
+    }
+
+    h2 {
+      font-weight: 600;
+      font-size: 40px;
+      color: var(--dark);
+    }
+    
+    h3 {
+      font-size: 24px;
+      color: var(--mid);
+    }
+
+    p {
+      text-align: left;
+      margin: 10px;
+    }
+  }
+}
+
+.buttonSection {
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    padding: 10px 20px 10px 20px;
+    height: 45px;
+    font-family: var(--font);
+    font-size: 16px;
+    border-radius: 4px;
+    border: none;
+    margin: 10px;
+    background: var(--mid);
+    color: var(--background);
+  }
+}
+
+.commentsSection {
+  width: 700px;
+  text-align: left;
+
+  h3 {
+    font-size: 24px;
+    color: var(--dark);
+  }
+}
+
+.commentOuter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+  text-align: center;
+}
+
+.commentBody {
+  border: solid 2px var(--grey);
+  border-radius: 10px;
+  padding: 10px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left !important;
+}
+
+.commentButtons {
+  width: 15%;
+
+  button {
+    width: 100%;
+    background: none;
+    border: solid 2px var(--grey);
+    border-radius: 4px;
+    height: 35px;
+    margin: 0 0 5px 0;
+  }
+}
+
+.userImage {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+}
+
+.addComment {
+  width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.textarea {
+  width: 80%;
+  height: 80px;
+  margin: 10px;
+  padding: 30px;
+}

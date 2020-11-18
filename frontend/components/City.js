@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { isCreator } from '../lib/auth'
+import Navbar from './Navbar'
 
 
 const City = (props) => {
@@ -62,96 +63,85 @@ const City = (props) => {
       })
   }
 
-  return <div>
-    <div className="section">
-      <div className="container">
+  return <main className="singleCityMain">
+    <header>
+      <Navbar />
+    </header>
 
+    <section className="cityInfo">
+      <img src={city.image} alt={city.name} />
+      <h2>{city.name}</h2>
+      <h3>{city.country}</h3>
+      <p>{city.bio}</p>
+    </section>
 
-        <img src={city.image} alt={city.name} />
-        <h1 className="title">{city.name}</h1>
-        <h2 className="subtitle">{city.country}</h2>
-        <h2 className="subtitle">{city.bio}</h2>
-
-
-        {token && city && isCreator(city.user._id) && < button className="button is-dark" onClick={handleDelete}>
+    <section className="buttonSection">
+      {token && city && isCreator(city.user._id) &&
+        <button onClick={handleDelete}>
           Remove City
         </button>}
-        {token && city && isCreator(city.user._id) && < Link className="button is-primary" to={`/cities/edit-city/${cityName}`}>
+      {token && city && isCreator(city.user._id) && <Link to={`/cities/edit-city/${cityName}`}>
+        <button>
           Edit City
-        </Link>}
-        {token && <Link className="button is-dark" to={'../chat/src/components/Join'}>
-          Chat to Users in {city.name}
-        </Link>}
-        <div>
-          <br />
-          <br />
-        </div>
-        {/*show comments */}
-
+          </button>
+      </Link>}
+      {token && <Link to={`/cities/${city.name}/users`}>
+        <button className="darkButton">
+          See Users in {city.name}
+        </button>
+      </Link>}
+      {token && <Link to={`/cities/${city.name}/users`}>
+        <button className="darkButton">
+          Join {city.name} Chat Room
+        </button>
+      </Link>}
+    </section>
+    <section className="commentsSection">
+      <h3>User Comments About {city.name}</h3>
+      <div className="previousComments">
         {/* this will prevent breaking when loading checks if is any comments */}
         {city.comments && city.comments.map(comment => {
-          // console.log(comment)
 
-          return <article key={comment._id} className="media">
-
-            <figure className="media-right">
-              <p className="image is-64x64">
-                <img src={comment.user.image} />
-              </p>
-            </figure>
-            <div className="media-content">
-              <div className="content">
-                <p className="subtitle">
-                  <strong> {comment.user.username} </strong>
-                  {/* <small  className="media-left"> { comment.createdAt} </small>  */}
-                  <br />
-                  {comment.text} </p>
+          return <section className="commentOuter" key={comment._id}>
+            <div className="userImage">
+              <img src={comment.user.image} />
+            </div>
+            <div className="commentBody">
+              <h3> {comment.user.username} </h3>
+              <p>{comment.text}</p>
+            </div>
+            <div className="commentButtons">
+            {isCreator(comment.user._id) &&
+                <Link to={`/cities/${cityName}/comments/${comment._id}`}>
+                  <button>
+                    Edit 🖋
+                  </button>
+                </Link>}
+              {isCreator(comment.user._id) && <div>
+                <button onClick={() => handleDeleteComment(comment._id)}>
+                  Delete ❌
+                  </button>
+              </div>}
               </div>
-            </div>
-            {isCreator(comment.user._id) && <div className="media-right">
-              <button
-                className="delete"
-                onClick={() => handleDeleteComment(comment._id)}>
-              </button>
-            </div>}
-
-            {isCreator(comment.user._id) && <Link className="button is-small" to={`/cities/${cityName}/comments/${comment._id}`}>
-              Edit 🖊️
-            </Link>}
-          </article>
+          </section>
         })}
-
-        {/*post comments */}
-        <article className="media">
-          <div className="media-content">
-            <div className="field">
-              <p className="control">
-                <textarea
-                  className="textarea"
-                  placeholder="Make a comment.."
-                  onChange={event => updateText(event.target.value)}
-                  value={text}>
-                  {text}
-                </textarea>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <button
-                  onClick={handleComment}
-                  className="button is-info">
-                  Send
-                </button>
-              </p>
-            </div>
-          </div>
-        </article>
       </div>
-
-    </div >
-
-
-  </div >
+      <h3>Add a Comment</h3>
+      <section className="addComment">
+              <textarea 
+                className="textarea"
+                placeholder="Add your text here..."
+                onChange={event => updateText(event.target.value)}
+                value={text}>
+              </textarea>
+              <button
+                onClick={handleComment}
+                className="button is-info">
+                Send
+                </button>
+      </section>
+    </section>
+  </main>
 }
 
 export default City
