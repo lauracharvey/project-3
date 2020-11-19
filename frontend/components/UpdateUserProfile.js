@@ -71,8 +71,6 @@ const UpdateUserProfile = (props) => {
       })
   }
 
-
-  // delete profile
   function handleDelete() {
     axios.delete(`/api/user/${userId}`, {
       headers: { Authorization: `Bearer ${token}` }
@@ -175,9 +173,9 @@ const UpdateUserProfile = (props) => {
       <button>Update</button>
 
     </form>
-    {/* <button onClick={handleDelete}>
+    <button onClick={handleDelete}>
       Delete Profile
-    </button> */}
+    </button>
   </main >
 }
 

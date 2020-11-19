@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Logo from '../images/Logo.jpg'
 
 const Signup = (props) => {
   const [cityData, updateCityData] = useState([])
@@ -9,10 +10,11 @@ const Signup = (props) => {
     email: '',
     password: '',
     passwordConfirmation: '',
-    age: '',
-    height: '',
     bio: '',
-    interest: '',
+    availability: '',
+    specialisms: [],
+    languages: [],
+    availableFor: '',
     location: '',
     image: ''
   })
@@ -22,12 +24,15 @@ const Signup = (props) => {
     email: '',
     password: '',
     passwordConfirmation: '',
-    height: '',
     bio: '',
-    interest: '',
+    availability: '',
+    specialisms: [],
+    languages: [],
+    availableFor: '',
     location: '',
     image: ''
   })
+
   useEffect(() => {
     axios.get('/api/cities')
       .then(res => {
@@ -38,7 +43,6 @@ const Signup = (props) => {
   function handleChange(event) {
     const name = event.target.name
     const value = event.target.value
-    // console.log(`name: ${name}, value ${value}`)
     const data = {
       ...signupFormData,
       [name]: value
@@ -60,6 +64,14 @@ const Signup = (props) => {
     updateSignupFormData(data)
   }
 
+  function handleAvailability(event) {
+    const data = {
+      ...formData,
+      availability: `${event.target.value}`
+    }
+    updateFormData(data)
+  }
+
   function handleSubmit(event) {
     event.preventDefault()
     axios.post('/api/signup', signupFormData)
@@ -71,107 +83,71 @@ const Signup = (props) => {
           props.history.push('/')
         }
       })
-
   }
 
+  return <main className="signupMain">
+    <img src={Logo} alt="Logo"/>
+    <h1>Sign Up</h1>
+    <form onSubmit={handleSubmit}>
+      <label>username
+      <input
+          type="text"
+          onChange={handleChange}
+          value={signupFormData.username}
+          name="username"
+        />
+        {errors.username && <p style={{ color: 'red' }}>
+          {`There was a problem with your ${errors.username.path} `}
+        </p>}
+      </label>
 
+      <label>email
+      <input
+          type="text"
+          onChange={handleChange}
+          value={signupFormData.email}
+          name="email"
+        />
+        {errors.email && <p style={{ color: 'red' }}>
+          {`There was a problem with your ${errors.email.path} `}
+        </p>}
+      </label>
 
+      <label>password
+      <input
+          type="password"
+          onChange={handleChange}
+          value={signupFormData.password}
+          name="password"
+        />
+        {errors.password && <p style={{ color: 'red' }}>
+          {`There was a problem with your ${errors.password.path} `}
+        </p>}
+      </label>
 
-  return <form onSubmit={handleSubmit}>
-    <div>
-      <label>Username</label>
+      <label>confirm password
       <input
-        type="text"
-        onChange={handleChange}
-        value={signupFormData.username}
-        name="username"
-      />
-      {errors.username && <p style={{ color: 'red' }}>
-        {`There was a problem with your ${errors.username.path} `}
-      </p>}
-    </div>
-    <div>
-      <label>Email </label>
-      <input
-        type="text"
-        onChange={handleChange}
-        value={signupFormData.email}
-        name="email"
-      />
-      {errors.email && <p style={{ color: 'red' }}>
-        {`There was a problem with your ${errors.email.path} `}
-      </p>}
-    </div>
-    <div>
-      <label>Password </label>
-      <input
-        type="password"
-        onChange={handleChange}
-        value={signupFormData.password}
-        name="password"
-      />
-      {errors.password && <p style={{ color: 'red' }}>
-        {`There was a problem with your ${errors.password.path} `}
-      </p>}
-    </div>
-    <div>
-      <label>Confirm Password </label>
-      <input
-        type="password"
-        onChange={handleChange}
-        value={signupFormData.passwordConfirmation}
-        name="passwordConfirmation"
-      />
-      {errors.passwordConfirmation && <p style={{ color: 'red' }}>
-        {'passwords does not match '}
-      </p>}
-    </div>
-    <div>
-      <label>Age </label>
-      <input
-        type="text"
-        onChange={handleChange}
-        value={signupFormData.age}
-        name="age"
-      />
-    </div>
-    <div>
-      <label>Height </label>
-      <input
-        type="text"
-        onChange={handleChange}
-        value={signupFormData.height}
-        name="height"
-      />
-      {errors.height && <p style={{ color: 'red' }}>
-        {`error with ${errors.height.path} `}
-      </p>}
-    </div>
-    <div>
-      <label>Bio </label>
-      <input
-        type="text"
-        onChange={handleChange}
-        value={signupFormData.bio}
-        name="bio"
-      />
-      {errors.bio && <p style={{ color: 'red' }}>
-        {` Please write someting about yourself in ${errors.bio.path} `}
-      </p>}
-    </div>
-    <div>
-      <label>Interest </label>
-      <input
-        type="text"
-        onChange={handleChange}
-        value={signupFormData.interest}
-        name="interest"
-      />
-      {errors.interest && <p style={{ color: 'red' }}>
-        {` Please write someting about your ${errors.interest.path} `}
-      </p>}
-    </div>
-    <div>
+          type="password"
+          onChange={handleChange}
+          value={signupFormData.passwordConfirmation}
+          name="passwordConfirmation"
+        />
+        {errors.passwordConfirmation && <p style={{ color: 'red' }}>
+          {'passwords does not match '}
+        </p>}
+      </label>
+
+      <label>bio
+      <textarea
+          onChange={handleChange}
+          value={signupFormData.bio}
+          name="bio"
+        />
+        {errors.bio && <p style={{ color: 'red' }}>
+          {` Please write someting about yourself in ${errors.bio.path} `}
+        </p>}
+      </label>
+
       <label>city
         <select name="location" onChange={handleLocation}>
           {cityData.map((city, index) => {
@@ -182,23 +158,50 @@ const Signup = (props) => {
           {' Please choose a city '}
         </p>}
       </label>
-    </div>
-    <div>
-      <label>Image </label>
+
+      <label>availability
+        <select name="location" onChange={handleAvailability}>
+          <option>Immediate</option>
+          <option>1 - 2 Weeks</option>
+          <option>1 - 2 Months</option>
+          <option>Busy for the Foreseeable</option>
+        </select>
+      </label>
+
+      <label>specialisms
+        <input
+          type="text"
+          onChange={handleChange}
+          value={signupFormData.specialisms}
+          name="specialisms"
+        />
+      </label>
+
+      <label>languages
+        <input
+          type="text"
+          onChange={handleChange}
+          value={signupFormData.languages}
+          name="languages"
+        />
+      </label>
+
+      <label>image
       <input
-        type="text"
-        onChange={handleChange}
-        value={signupFormData.image}
-        name="image"
-      />
-      {errors.image && <p style={{ color: 'red' }}>
-        {' Please upload your image link '}
-      </p>}
-    </div>
+          type="text"
+          onChange={handleChange}
+          value={signupFormData.image}
+          name="image"
+        />
+        {errors.image && <p style={{ color: 'red' }}>
+          {' Please upload your image link '}
+        </p>}
+      </label>
 
+      <button>Submit</button>
 
-    <button>Signup</button>
-  </form >
+    </form >
+  </main>
 
 }
 
