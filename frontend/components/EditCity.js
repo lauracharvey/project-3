@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import Navbar from './Navbar'
 
 const EditCity = (props) => {
   const cityName = props.match.params.cityName
-  const inputFields = ['name', 'country', 'bio', 'image']
 
-  const [editCityFormData, setEditCityFormData] = useState({
+  const [formData, setFormData] = useState({
     name: '',
     country: '',
     bio: '',
@@ -14,24 +14,24 @@ const EditCity = (props) => {
 
   useEffect(() => {
     axios.get(`/api/cities/${cityName}`)
-      .then(resp => {
-        setEditCityFormData(resp.data)
+      .then(axiosResp => {
+        setFormData(axiosResp.data)
       })
   }, [])
 
   function handleChange(event) {
     const data = {
-      ...editCityFormData,
+      ...formData,
       [event.target.name]: event.target.value
     }
-    setEditCityFormData(data)
+    setFormData(data)
   }
 
   function handleSubmit(event) {
     event.preventDefault()
     const token = localStorage.getItem('token')
 
-    axios.put(`/api/cities/${cityName}`, editCityFormData, {
+    axios.put(`/api/cities/${cityName}`, formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(resp => {
@@ -39,25 +39,34 @@ const EditCity = (props) => {
       })
   }
 
-  return <>
+  console.log(formData)
+
+  return <main className="editCityMain">
+    <header>
+      <Navbar />
+    </header>
+    <h1>Edit Details about <strong>{cityName}</strong></h1>
+    <div className="cityImage">
+      <img src={formData.image} />
+    </div>
     <form onSubmit={handleSubmit}>
-      {inputFields.map((field, i) => {
-        return <div key={i}>
-          <label>{field}</label>
-          <input
-            type="text"
-            onChange={handleChange}
-            value={editCityFormData[field]}
-            name={field}
 
-          />
-        </div>
-      })}
-
+      <label>Bio
+        <textarea onChange={handleChange} value={formData.bio} name="bio">
+        </textarea>
+      </label>
+      <label>Image
+        <input
+          type="text"
+          onChange={handleChange}
+          value={formData.image}
+          name="image"
+        />
+      </label>
       <button>Submit</button>
 
     </form>
-  </>
+  </main>
 }
 
 export default EditCity

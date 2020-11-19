@@ -295,3 +295,364 @@ img {
   margin: 10px;
   padding: 30px;
 }
+
+// UPDATE USER PAGE
+
+.updateUserMain {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .userImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    overflow: hidden;
+    margin: 10px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  form {
+    width: 350px;
+
+    label {
+      width: 100%;
+      display: block;
+      margin: 10px 0 0 0;
+    }
+
+    input {
+      width: 100%;
+      height: 35px;
+      font-family: var(--font);
+      font-size: 16px;
+      background: none;
+      border: solid 2px var(--extraLight);
+      border-radius: 8px;
+    }
+
+    select {
+      width: 100%;
+      height: 35px;
+      font-family: var(--font);
+      font-size: 16px;
+      background: none;
+      border: solid 2px var(--extraLight);
+      border-radius: 8px;
+    }
+
+    button {
+      height: 45px;
+      width: 100%;
+      font-family: var(--font);
+      font-size: 16px;
+      border-radius: 4px;
+      border: none;
+      margin: 20px 0 20px 0;
+    }
+  }
+}
+
+// EDIT CITY PAGE
+
+.editCityMain {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  
+  h1 {
+    font-size: 30px;
+  }
+  
+  .cityImage {
+    width: 600px;
+    margin: 10px;
+  
+    img {
+      width: 100%;
+    }
+  }
+  
+  form {
+    width: 500px;
+  
+    label {
+      width: 100%;
+      display: block;
+      margin: 10px 0 0 0;
+    }
+  
+    input {
+      width: 100%;
+      height: 35px;
+      font-family: var(--font);
+      font-size: 16px;
+      background: none;
+      border: solid 2px var(--extraLight);
+      border-radius: 8px;
+    }
+
+    textarea {
+      min-height: 200px;
+      width: 100%;
+      font-size: 16px;
+      background: none;
+      border: solid 2px var(--extraLight);
+      border-radius: 8px;
+    }
+  
+    select {
+      width: 100%;
+      height: 35px;
+      font-family: var(--font);
+      font-size: 16px;
+      background: none;
+      border: solid 2px var(--extraLight);
+      border-radius: 8px;
+    }
+  
+    button {
+      height: 45px;
+      width: 100%;
+      font-family: var(--font);
+      font-size: 16px;
+      border-radius: 4px;
+      border: none;
+      margin: 20px 0 20px 0;
+      }
+    }
+  }
+
+// ADD CITY PAGE  
+
+  .addCityMain {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+  
+    h1 {
+      font-size: 30px;
+      margin-top: 50px;
+    }
+  
+    form {
+      width: 350px;
+  
+      label {
+        width: 100%;
+        display: block;
+        margin: 10px 0 0 0;
+      }
+  
+      input {
+        width: 100%;
+        height: 35px;
+        font-family: var(--font);
+        font-size: 16px;
+        background: none;
+        border: solid 2px var(--extraLight);
+        border-radius: 8px;
+      }
+
+      textarea {
+        min-height: 200px;
+        width: 100%;
+        font-size: 16px;
+        background: none;
+        border: solid 2px var(--extraLight);
+        border-radius: 8px;
+      }
+  
+      button {
+        height: 45px;
+        width: 100%;
+        font-family: var(--font);
+        font-size: 16px;
+        border-radius: 4px;
+        border: none;
+        margin: 20px 0 20px 0;
+      }
+    }
+  }
+
+// USER LIST PAGE
+
+.userListMain {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .cardSection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    .imageOuter {
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .imageContainer {
+        width: 200px;
+        height: 200px;
+        border-radius: 100%;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .textContainer {
+      height: 100px;
+    }
+
+  }
+}
+
+// USER PROFILE PAGE
+
+.userProfileMain {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-size: 40px;
+    font-weight: 600;
+    margin: 30px 0 20px 0;
+    color: var(--dark);
+  }
+
+  h2, h3 {
+    font-size: 16px;
+    color: var(--dark);
+  }
+
+  h2 {
+    font-weight: 600;
+  }
+
+  .userData {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .userImageContainer {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .topUserSection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 20px 0 20px 0;
+
+    .userSectionInner {
+      width: 250px;
+      background: var(--grey);
+      padding: 10px;
+      margin: 10px;
+    }
+  }
+
+  .languagesSection {
+    width: 800px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--grey);
+    border-radius: 4px;
+    
+    h2 {
+      font-size: 18px;
+    }
+  }
+
+  .languagesInner {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      height: 40px;
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+      background: var(--mid);
+      border: none;
+      color: var(--background);
+      border-radius: 4px;
+      border-radius: 8px;
+    }
+  }
+
+  .bioSection {
+    margin: 20px;
+    padding: 10px;
+    width: 800px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: var(--grey);
+    border-radius: 4px;
+  }
+
+  .interestsSection {
+    margin: 0 0 20px 0;
+    padding: 10px;
+    width: 800px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: var(--grey);
+    border-radius: 4px;
+  }
+}

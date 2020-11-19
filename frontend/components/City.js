@@ -92,7 +92,7 @@ const City = (props) => {
       </Link>}
       {token && <Link to={`/cities/${city.name}/users`}>
         <button className="darkButton">
-          Join {city.name} Chat Room
+          Join Chat Room
         </button>
       </Link>}
     </section>

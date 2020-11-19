@@ -36,7 +36,7 @@ const CityList = () => {
         value={search}
       />
     </section>
-    <section className="cardsSection">
+    <section>
       {searchCity().map((city, index) => {
         return <div key={index}>
           <Link to={`/cities/${city.name}`}>

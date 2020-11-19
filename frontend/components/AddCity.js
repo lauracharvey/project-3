@@ -1,13 +1,11 @@
 
 import React, { useState } from 'react'
 import axios from 'axios'
-
-
-
+import Navbar from './Navbar'
 
 const AddCity = (props) => {
 
-  const [addFormData, updateAddFormData] = useState({
+  const [formData, updateFormData] = useState({
     name: '',
     country: '',
     bio: '',
@@ -17,51 +15,70 @@ const AddCity = (props) => {
   const inputFields = ['name', 'country', 'bio', 'image']
 
   function handleChange(event) {
-    console.log('handleChange')
-    // overwriting the field we've updated
     const data = {
-      ...addFormData,
+      ...formData,
 
       [event.target.name]: event.target.value
     }
-    // console.log(data)
-    updateAddFormData(data)
+    updateFormData(data)
   }
   function handleSubmit(event) {
-    console.log('handleSubmit')
     event.preventDefault()
     const token = localStorage.getItem('token')
-    axios.post('/api/cities', addFormData, {
+    axios.post('/api/cities', formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
-      .then(resp => {
+      .then(res => {
         console.log(props.history.push('/cities'))
         props.history.push('/cities')
       })
-
   }
 
-  return <>
+  return <main className="addCityMain">
+    <header>
+      <Navbar />
+    </header>
+    <h1>Add Your City</h1>
     <form onSubmit={handleSubmit}>
-      {inputFields.map((field, i) => {
-        return <div key={i}>
-          <label>{field}</label>
-          <input
-            type="text"
-            name={field}
-            value={addFormData[field]}
-            onChange={handleChange}
+      <label>Name
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+        />
+      </label>
+
+      <label>Country
+        <input
+          type="text"
+          name="country"
+          value={formData.country}
+          onChange={handleChange}
+        />
+      </label>
+
+      <label>Bio
+        <textarea
+          type="text"
+          name="bio"
+          value={formData.bio}
+          onChange={handleChange}
+          >
+        </textarea>
+      </label>
+
+      <label>Image
+        <input
+          type="text"
+          name="image"
+          value={formData.image}
+          onChange={handleChange}
           />
-        </div>
-      })}
-
+      </label>
       <button>Submit</button>
-
     </form>
-
-  </>
-
-
+  </main>
 }
 
 export default AddCity

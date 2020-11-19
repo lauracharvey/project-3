@@ -7,10 +7,11 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  age: { type: Number },
-  height: { type: String, required: true },
+  availability: { type: String, required: true },
+  specialisms: { type: [String], required: true},
+  languages: { type: [String], required: true},
+  availableFor: { type: String, required: true },
   bio: { type: String, required: true },
-  interest: { type: String, required: true },
   location: { type: String, required: true },
   image: { type: String, required: true }
 })

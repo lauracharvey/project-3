@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Navbar from './Navbar'
 
 const UpdateUserProfile = (props) => {
   const userId = props.match.params.userId
@@ -50,28 +51,30 @@ const UpdateUserProfile = (props) => {
       ...formData,
       location: `${event.target.value}`
     }
-    // console.log(data)
     updateFormData(data)
   }
 
   function handleSubmit(event) {
     event.preventDefault()
 
-    // console.log(formData)
-
     const token = localStorage.getItem('token')
     axios.put(`/api/user/${userId}`, formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
-      .then(resp => {
-        // console.log(resp.data)
+      .then(res => {
         props.history.push(`/user/${userId}`)
       })
   }
 
-  return <main className="addRiderMain">
-    <h1>Hi {formData.username}</h1>
+  return <main className="updateUserMain">
+    <header>
+      <Navbar/>
+    </header>
+    <h1>Hi <strong>{formData.username}</strong></h1>
     <h2>Update your Profile</h2>
+    <div className="userImage">
+      <img src={formData.image}/>
+    </div>
 
     <form onSubmit={handleSubmit}>
       {inputFields.map((field, i) => {
@@ -86,7 +89,7 @@ const UpdateUserProfile = (props) => {
         </div>
       })}
 
-      <label>City
+      <label>city
         <select name="location" onChange={handleLocation}>
           {cityData.map((city, index) => {
             return <option key={index} value={city.name}>{city.name}</option>
