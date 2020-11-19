@@ -66,10 +66,10 @@ const Signup = (props) => {
 
   function handleAvailability(event) {
     const data = {
-      ...formData,
+      ...signupFormData,
       availability: `${event.target.value}`
     }
-    updateFormData(data)
+    updateSignupFormData(data)
   }
 
   function handleSubmit(event) {
@@ -86,47 +86,47 @@ const Signup = (props) => {
   }
 
   return <main className="signupMain">
-    <img src={Logo} alt="Logo"/>
+    <img src={Logo} alt="Logo" />
     <h1>Sign Up</h1>
     <form onSubmit={handleSubmit}>
       <label>username
-      <input
+        <input
           type="text"
           onChange={handleChange}
           value={signupFormData.username}
           name="username"
         />
         {errors.username && <p style={{ color: 'red' }}>
-          {`There was a problem with your ${errors.username.path} `}
+          {`There was a problem with your  ${errors.username.path} `}
         </p>}
       </label>
 
       <label>email
-      <input
+        <input
           type="text"
           onChange={handleChange}
           value={signupFormData.email}
           name="email"
         />
         {errors.email && <p style={{ color: 'red' }}>
-          {`There was a problem with your ${errors.email.path} `}
+          {`There was a problem with your password and/or ${errors.email.path} `}
         </p>}
       </label>
 
       <label>password
-      <input
+        <input
           type="password"
           onChange={handleChange}
           value={signupFormData.password}
           name="password"
         />
         {errors.password && <p style={{ color: 'red' }}>
-          {`There was a problem with your ${errors.password.path} `}
+          {`There was a problem with your email and/or ${errors.password.path} `}
         </p>}
       </label>
 
       <label>confirm password
-      <input
+        <input
           type="password"
           onChange={handleChange}
           value={signupFormData.passwordConfirmation}
@@ -138,7 +138,7 @@ const Signup = (props) => {
       </label>
 
       <label>bio
-      <textarea
+        <textarea
           onChange={handleChange}
           value={signupFormData.bio}
           name="bio"
@@ -166,8 +166,11 @@ const Signup = (props) => {
           <option>1 - 2 Months</option>
           <option>Busy for the Foreseeable</option>
         </select>
+        {errors.availability && <p style={{ color: 'red' }}>
+          {' Please choose your availability '}
+        </p>}
       </label>
-
+    
       <label>specialisms
         <input
           type="text"
@@ -176,7 +179,7 @@ const Signup = (props) => {
           name="specialisms"
         />
       </label>
-
+     
       <label>languages
         <input
           type="text"
@@ -187,14 +190,14 @@ const Signup = (props) => {
       </label>
 
       <label>image
-      <input
+        <input
           type="text"
           onChange={handleChange}
           value={signupFormData.image}
           name="image"
         />
         {errors.image && <p style={{ color: 'red' }}>
-          {' Please upload your image link '}
+          {' Please provide an image link '}
         </p>}
       </label>
 
