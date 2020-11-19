@@ -113,62 +113,62 @@ const UpdateUserProfile = (props) => {
 
       <label>specialisms
         <input
-        type="text"
-        onChange={handleData}
-        value={formData.specialisms}
-        name="specialisms"
+          type="text"
+          onChange={handleData}
+          value={formData.specialisms}
+          name="specialisms"
         />
       </label>
 
       <label>languages
         <input
-        type="text"
-        onChange={handleData}
-        value={formData.languages}
-        name="languages"
+          type="text"
+          onChange={handleData}
+          value={formData.languages}
+          name="languages"
         />
       </label>
 
       <label>email
         <input
-        type="text"
-        onChange={handleData}
-        value={formData.email}
-        name="email"
+          type="text"
+          onChange={handleData}
+          value={formData.email}
+          name="email"
         />
       </label>
 
       <label>password
         <input
-        type="password"
-        onChange={handleData}
-        value={formData.password}
-        name="password"
+          type="password"
+          onChange={handleData}
+          value={formData.password}
+          name="password"
         />
       </label>
 
       <label>confirm password
         <input
-        type="password"
-        onChange={handleData}
-        value={formData.passwordConfirmation}
-        name="passwordConfirmation"
+          type="password"
+          onChange={handleData}
+          value={formData.passwordConfirmation}
+          name="passwordConfirmation"
         />
       </label>
 
       <label>bio
         <textarea
-        onChange={handleData}
-        value={formData.bio}
-        name="bio"
+          onChange={handleData}
+          value={formData.bio}
+          name="bio"
         />
       </label>
 
       <label>I'd like to collaborate on:
         <textarea
-        onChange={handleData}
-        value={formData.availableFor}
-        name="availableFor"
+          onChange={handleData}
+          value={formData.availableFor}
+          name="availableFor"
         />
       </label>
 
