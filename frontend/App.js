@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import UserList from './components/UserList'
 
 import './styles/style.scss'
 import 'bulma'
@@ -29,7 +28,6 @@ const App = () => {
 
       <Route exact path="/cities/edit-city/:cityName" component={EditCity} />
       <Route exact path="/cities/:cityName/users" component={UserListByCity} />
-      <Route exact path="/users" component={UserList} />
       <Route exact path="/user/:userId/update" component={UpdateUserProfile} />
       <Route exact path="/user/:userId" component={UserProfile} />
 
