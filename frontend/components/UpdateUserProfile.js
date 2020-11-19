@@ -68,12 +68,12 @@ const UpdateUserProfile = (props) => {
 
   return <main className="updateUserMain">
     <header>
-      <Navbar/>
+      <Navbar />
     </header>
     <h1>Hi <strong>{formData.username}</strong></h1>
     <h2>Update your Profile</h2>
     <div className="userImage">
-      <img src={formData.image}/>
+      <img src={formData.image} />
     </div>
 
     <form onSubmit={handleSubmit}>
