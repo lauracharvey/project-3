@@ -30,11 +30,9 @@ const UserListByCity = (props) => {
         return <div key={index}>
           <Link to={`/user/${user._id}`}>
             <div className="cardOuter">
-              <div className="imageOuter">
                 <div className="imageContainer">
                   <img src={user.image} alt={user.username} />
                 </div>
-              </div>
               <div className="textContainer">
                 <h2>{user.username}</h2>
               </div>

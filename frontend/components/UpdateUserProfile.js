@@ -7,22 +7,19 @@ const UpdateUserProfile = (props) => {
   const [cityData, updateCityData] = useState([])
   const token = localStorage.getItem('token')
 
-
   const [formData, updateFormData] = useState({
     username: '',
     email: '',
     password: '',
     passwordConfirmation: '',
-    age: '',
-    height: '',
     bio: '',
-    interest: '',
+    availability: '',
+    specialisms: [],
+    languages: [],
+    availableFor: '',
     location: '',
     image: ''
   })
-
-  const inputFields = ['username', 'email', 'password',
-    'passwordConfirmation', 'age', 'height', 'bio', 'interest', 'image']
 
   useEffect(() => {
     axios.get(`/api/user/${userId}`)
@@ -52,6 +49,14 @@ const UpdateUserProfile = (props) => {
     const data = {
       ...formData,
       location: `${event.target.value}`
+    }
+    updateFormData(data)
+  }
+
+  function handleAvailability(event) {
+    const data = {
+      ...formData,
+      availability: `${event.target.value}`
     }
     updateFormData(data)
   }
@@ -88,17 +93,6 @@ const UpdateUserProfile = (props) => {
     </div>
 
     <form onSubmit={handleSubmit}>
-      {inputFields.map((field, i) => {
-        return <div key={i}>
-          <label>{field}</label>
-          <input
-            type="text"
-            onChange={handleData}
-            value={formData[field] || ''}
-            name={field}
-          />
-        </div>
-      })}
 
       <label>city
         <select name="location" onChange={handleLocation}>
@@ -106,6 +100,76 @@ const UpdateUserProfile = (props) => {
             return <option selected={city.name === formData.location} key={index} value={city.name}>{city.name}</option>
           })}
         </select>
+      </label>
+
+      <label>availability
+        <select name="location" onChange={handleAvailability}>
+          <option>Immediate</option>
+          <option>1 - 2 Weeks</option>
+          <option>1 - 2 Months</option>
+          <option>Busy for the Foreseeable</option>
+        </select>
+      </label>
+
+      <label>specialisms
+        <input
+          type="text"
+          onChange={handleData}
+          value={formData.specialisms}
+          name="specialisms"
+        />
+      </label>
+
+      <label>languages
+        <input
+          type="text"
+          onChange={handleData}
+          value={formData.languages}
+          name="languages"
+        />
+      </label>
+
+      <label>email
+        <input
+          type="text"
+          onChange={handleData}
+          value={formData.email}
+          name="email"
+        />
+      </label>
+
+      <label>password
+        <input
+          type="password"
+          onChange={handleData}
+          value={formData.password}
+          name="password"
+        />
+      </label>
+
+      <label>confirm password
+        <input
+          type="password"
+          onChange={handleData}
+          value={formData.passwordConfirmation}
+          name="passwordConfirmation"
+        />
+      </label>
+
+      <label>bio
+        <textarea
+          onChange={handleData}
+          value={formData.bio}
+          name="bio"
+        />
+      </label>
+
+      <label>I'd like to collaborate on:
+        <textarea
+          onChange={handleData}
+          value={formData.availableFor}
+          name="availableFor"
+        />
       </label>
 
       <button>Update</button>
