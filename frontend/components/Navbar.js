@@ -20,7 +20,11 @@ const Navbar = (props) => {
         <button className="darkButton">Add City</button>
       </Link>}
 
-    <img src={Logo} alt="Logo"/>
+    <img className="navLogo" src={Logo} alt="Logo"/>
+
+    <div className="mobileNav">
+      <img className="mobileLogo" src={Logo} alt="Logo"/>
+    </div>
 
     {localStorage.getItem('token')
       && <Link to={`/user/${userId}/update`}>

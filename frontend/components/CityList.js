@@ -31,6 +31,7 @@ const CityList = () => {
     <section className="searchSection">
       <label>Search</label>
       <input
+        className="searchbar"
         placeholder="find your city"
         onChange={(event) => updateSearch(event.target.value)}
         value={search}
