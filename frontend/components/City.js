@@ -83,18 +83,18 @@ const City = (props) => {
       {token && city && isCreator(city.user._id) && <Link to={`/cities/edit-city/${cityName}`}>
         <button>
           Edit City
-          </button>
+        </button>
       </Link>}
       {token && <Link to={`/cities/${city.name}/users`}>
         <button className="darkButton">
           See Users in {city.name}
         </button>
       </Link>}
-      {token && <Link to={`/cities/${city.name}/users`}>
+      {token && <a rel="noreferrer" target='_blank' href={process.env.CHAT_URL}>
         <button className="darkButton">
           Join Chat Room
         </button>
-      </Link>}
+      </a>}
     </section>
     <section className="commentsSection">
       <h3>User Comments About {city.name}</h3>
@@ -111,7 +111,7 @@ const City = (props) => {
               <p>{comment.text}</p>
             </div>
             <div className="commentButtons">
-            {isCreator(comment.user._id) &&
+              {isCreator(comment.user._id) &&
                 <Link to={`/cities/${cityName}/comments/${comment._id}`}>
                   <button>
                     Edit 🖋
@@ -120,25 +120,25 @@ const City = (props) => {
               {isCreator(comment.user._id) && <div>
                 <button onClick={() => handleDeleteComment(comment._id)}>
                   Delete ❌
-                  </button>
+                </button>
               </div>}
-              </div>
+            </div>
           </section>
         })}
       </div>
       <h3>Add a Comment</h3>
       <section className="addComment">
-              <textarea 
-                className="textarea"
-                placeholder="Add your text here..."
-                onChange={event => updateText(event.target.value)}
-                value={text}>
-              </textarea>
-              <button
-                onClick={handleComment}
-                className="button is-info">
-                Send
-                </button>
+        <textarea
+          className="textarea"
+          placeholder="Add your text here..."
+          onChange={event => updateText(event.target.value)}
+          value={text}>
+        </textarea>
+        <button
+          onClick={handleComment}
+          className="button is-info">
+          Send
+        </button>
       </section>
     </section>
   </main>

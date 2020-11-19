@@ -103,7 +103,7 @@ const UpdateUserProfile = (props) => {
       <label>city
         <select name="location" onChange={handleLocation}>
           {cityData.map((city, index) => {
-            return <option key={index} value={city.name}>{city.name}</option>
+            return <option selected={city.name === formData.location} key={index} value={city.name}>{city.name}</option>
           })}
         </select>
       </label>
@@ -111,9 +111,9 @@ const UpdateUserProfile = (props) => {
       <button>Update</button>
 
     </form>
-    <button onClick={handleDelete}>
+    {/* <button onClick={handleDelete}>
       Delete Profile
-    </button>
+    </button> */}
   </main >
 }
 
