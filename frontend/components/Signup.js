@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const Signup = (props) => {
+  const [cityData, updateCityData] = useState([])
 
   const [signupFormData, updateSignupFormData] = useState({
     username: '',
@@ -12,7 +13,7 @@ const Signup = (props) => {
     height: '',
     bio: '',
     interest: '',
-    location: 'dublin',
+    location: '',
     image: ''
   })
 
@@ -27,6 +28,12 @@ const Signup = (props) => {
     location: '',
     image: ''
   })
+  useEffect(() => {
+    axios.get('/api/cities')
+      .then(res => {
+        updateCityData(res.data)
+      })
+  }, [])
 
   function handleChange(event) {
     const name = event.target.name
@@ -45,21 +52,29 @@ const Signup = (props) => {
     updateErrors(newErrors)
   }
 
+  function handleLocation(event) {
+    const data = {
+      ...signupFormData,
+      location: `${event.target.value}`
+    }
+    updateSignupFormData(data)
+  }
+
   function handleSubmit(event) {
-
     event.preventDefault()
-
     axios.post('/api/signup', signupFormData)
-      .then(resp => {
-        // console.log(resp.data)
-        if (resp.data.errors) {
-          updateErrors(resp.data.errors)
+      .then(res => {
+        // console.log(res.data)
+        if (res.data.errors) {
+          updateErrors(res.data.errors)
         } else {
           props.history.push('/')
         }
       })
 
   }
+
+
 
 
   return <form onSubmit={handleSubmit}>
@@ -108,7 +123,7 @@ const Signup = (props) => {
         name="passwordConfirmation"
       />
       {errors.passwordConfirmation && <p style={{ color: 'red' }}>
-        {'Does not match password'}
+        {'passwords does not match '}
       </p>}
     </div>
     <div>
@@ -129,7 +144,7 @@ const Signup = (props) => {
         name="height"
       />
       {errors.height && <p style={{ color: 'red' }}>
-        {`There was a problem with your ${errors.height.path} `}
+        {`error with ${errors.height.path} `}
       </p>}
     </div>
     <div>
@@ -157,16 +172,16 @@ const Signup = (props) => {
       </p>}
     </div>
     <div>
-      <label>Location </label>
-      <select name="location" onChange={handleChange}>
-        <option value="dublin">Dublin</option>
-        <option value="london">London</option>
-        <option value="madrid">Madrid</option>
-        <option value="paris">Paris</option>
-      </select>
-      {errors.location && <p style={{ color: 'red' }}>
-        {' Please choose a city '}
-      </p>}
+      <label>city
+        <select name="location" onChange={handleLocation}>
+          {cityData.map((city, index) => {
+            return <option key={index} value={city.name}>{city.name}</option>
+          })}
+        </select>
+        {errors.location && <p style={{ color: 'red' }}>
+          {' Please choose a city '}
+        </p>}
+      </label>
     </div>
     <div>
       <label>Image </label>
@@ -176,7 +191,7 @@ const Signup = (props) => {
         value={signupFormData.image}
         name="image"
       />
-      {errors.bio && <p style={{ color: 'red' }}>
+      {errors.image && <p style={{ color: 'red' }}>
         {' Please upload your image link '}
       </p>}
     </div>

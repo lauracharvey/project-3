@@ -66,6 +66,17 @@ const UpdateUserProfile = (props) => {
       })
   }
 
+
+  // delete profile
+  function handleDelete() {
+    axios.delete(`/api/user/${userId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(() => {
+        props.history.push('/')
+      })
+  }
+
   return <main className="updateUserMain">
     <header>
       <Navbar />
