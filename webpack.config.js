@@ -8,9 +8,9 @@ module.exports = env => {
     entry: './frontend/index.js',
     output: {
       filename: 'bundle.js',
-      path: path.resolve('backend/dist'),
-      publicPath: '/',
-    },
+      path: path.resolve('./backend/dist'),
+      publicPath: '/'
+  },
     devtool: 'source-map',
     module: {
       rules: [

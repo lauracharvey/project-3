@@ -24,4 +24,10 @@ expressServer.use(bodyParser.json())
 
 expressServer.use('/api', Router)
 
+app.use('/', express.static(dist));
+
+app.get('*', function(req, res) {
+  res.sendFile(path.join(dist, 'index.html'));
+});
+
 expressServer.listen(8000)

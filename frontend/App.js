@@ -1,3 +1,6 @@
+const path = require('path')
+const dist = path.join(__dirname, 'dist');
+
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
