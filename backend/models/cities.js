@@ -13,8 +13,10 @@ const commentSchema = new mongoose.Schema({
 const citySchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   country: { type: String, required: true },
-  bio: { type: String, required: true },
-  image: { type: String, required: true },
+  bio: { type: String },
+  image: { type: String },
+  lat: { type: Number },
+  lng: { type: Number },
   user: { type: mongoose.Schema.ObjectId, ref: 'User' },
   comments: [commentSchema]
 })

@@ -47,4 +47,10 @@ userSchema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password)
 }
 
+// this will make sure the email has the right format 
+userSchema.path('email').validate(function (email) {
+  const emailRegex = /^([\w-.]+@([\w-]+\.)+[\w-]{2,4})?$/
+  return emailRegex.test(email)
+})
+
 module.exports = mongoose.model('User', userSchema)

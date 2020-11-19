@@ -5,6 +5,8 @@ import Navbar from './Navbar'
 const UpdateUserProfile = (props) => {
   const userId = props.match.params.userId
   const [cityData, updateCityData] = useState([])
+  const token = localStorage.getItem('token')
+
 
   const [formData, updateFormData] = useState({
     username: '',
@@ -24,15 +26,15 @@ const UpdateUserProfile = (props) => {
 
   useEffect(() => {
     axios.get(`/api/user/${userId}`)
-      .then(resp => {
-        updateFormData(resp.data)
+      .then(res => {
+        updateFormData(res.data)
       })
   }, [])
 
   useEffect(() => {
     axios.get('/api/cities')
-      .then(resp => {
-        updateCityData(resp.data)
+      .then(res => {
+        updateCityData(res.data)
       })
   }, [])
 
@@ -56,8 +58,6 @@ const UpdateUserProfile = (props) => {
 
   function handleSubmit(event) {
     event.preventDefault()
-
-    const token = localStorage.getItem('token')
     axios.put(`/api/user/${userId}`, formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -83,7 +83,7 @@ const UpdateUserProfile = (props) => {
           <input
             type="text"
             onChange={handleData}
-            value={formData[field]}
+            value={formData[field] || ''}
             name={field}
           />
         </div>
@@ -98,7 +98,11 @@ const UpdateUserProfile = (props) => {
       </label>
 
       <button>Update</button>
+
     </form>
+    <button onClick={handleDelete}>
+      Delete Profile
+    </button>
   </main >
 }
 

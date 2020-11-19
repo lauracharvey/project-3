@@ -11,6 +11,7 @@ router.route('/users')
 router.route('/user/:id')
   .get(userController.getSingleUser)
   .put(secureRoute, userController.updateUserProfile)
+  .delete(secureRoute, userController.deleteUser)
 
 
 router.route('/signup')

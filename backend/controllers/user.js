@@ -69,10 +69,29 @@ function updateUserProfile(req, res) {
     .catch(error => res.send(error))
 }
 
+// delete user
+function deleteUser(req, res) {
+  const id = req.params.id
+  const currentUser = req.currentUser
+  User
+    .findById(id)
+    .then(user => {
+      if (!user._id.equals(currentUser._id) || !user) {
+        return res.status(401).send({ message: 'Unauthorized to delete profile' })
+      }
+
+      user.deleteOne()
+      res.send({ message: '⤵️You successfully deleted', user })
+    })
+    .catch(error => res.send(error))
+}
+
+
 module.exports = {
   createUser,
   loginUser,
   getUsers,
   getSingleUser,
-  updateUserProfile
+  updateUserProfile,
+  deleteUser
 }
