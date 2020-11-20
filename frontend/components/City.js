@@ -4,11 +4,6 @@ import { Link } from 'react-router-dom'
 import { isCreator } from '../lib/auth'
 import Navbar from './Navbar'
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 0cb15d6d7407048837412e8aa7d07239108eb0fe
 const City = (props) => {
   
   const [city, updateCity] = useState({})
