@@ -9,6 +9,8 @@ const City = (props) => {
   const [city, updateCity] = useState({})
   const [text, updateText] = useState('')
 
+  console.log(process.env.CHAT_URL)
+
   const cityName = props.match.params.cityName
   const token = localStorage.getItem('token')
 
