@@ -4,12 +4,11 @@ import { Link } from 'react-router-dom'
 import { isCreator } from '../lib/auth'
 import Navbar from './Navbar'
 
-
 const City = (props) => {
   const [city, updateCity] = useState({})
   const [text, updateText] = useState('')
 
-  console.log(process.env.CHAT_URL)
+  // console.log(process.env.CHAT_URL)
 
   const cityName = props.match.params.cityName
   const token = localStorage.getItem('token')
@@ -92,7 +91,10 @@ const City = (props) => {
           See Users in {city.name}
         </button>
       </Link>}
-      {token && <a rel="noreferrer" target='_blank' href={process.env.CHAT_URL}>
+
+      {token && <a rel="noreferrer" target='_blank' href={'https://5fb68412d29a2a32dd2429cf--clever-cray-fb2a3c.netlify.app/'}>
+
+      {/* {token && <a rel="noreferrer" target='_blank' href={process.env.CHAT_URL}> */}
         <button className="darkButton">
           Join Chat Room
         </button>
