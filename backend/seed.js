@@ -2,10 +2,11 @@ const mongoose = require('mongoose')
 const User = require('./models/users')
 const Cities = require('./models/cities')
 const axios = require('axios')
+const { dbURI } = require('./config/environment')
 
 
 mongoose.connect(
-  'mongodb://localhost/sortdb',
+  dbURI,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   (err) => {
     if (err) return console.log(err)

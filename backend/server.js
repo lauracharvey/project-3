@@ -4,10 +4,12 @@ require('dotenv').config()
 const Router = require('./router')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-
+const path = require('path')
+const dist = path.join(__dirname, 'dist');
+const { port, dbURI } = require('./config/environment')
 
 mongoose.connect(
-  'mongodb://localhost/sortdb',
+  dbURI,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   (err) => {
     if (err) console.log(err)
@@ -22,12 +24,10 @@ expressServer.use((req, res, next) => {
 
 expressServer.use(bodyParser.json())
 
-expressServer.use('/api', Router)
+expressServer.use('/', express.static(dist));
 
-app.use('/', express.static(dist));
-
-app.get('*', function(req, res) {
+expressServer.get('*', function(req, res) {
   res.sendFile(path.join(dist, 'index.html'));
 });
 
-expressServer.listen(8000)
+expressServer.listen(port)
