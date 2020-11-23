@@ -92,7 +92,7 @@ const City = (props) => {
         </button>
       </Link>}
 
-      {token && <a rel="noreferrer" target='_blank' href={'https://5fb68412d29a2a32dd2429cf--clever-cray-fb2a3c.netlify.app/'}>
+      {token && <a rel="noreferrer" target='_blank' href={'https://shers-chat-client.herokuapp.com/'}>
 
       {/* {token && <a rel="noreferrer" target='_blank' href={process.env.CHAT_URL}> */}
         <button className="darkButton">
