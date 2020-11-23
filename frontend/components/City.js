@@ -5,6 +5,7 @@ import { isCreator } from '../lib/auth'
 import Navbar from './Navbar'
 
 const City = (props) => {
+  
   const [city, updateCity] = useState({})
   const [text, updateText] = useState('')
 
