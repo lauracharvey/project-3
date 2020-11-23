@@ -11,7 +11,7 @@ const Signup = (props) => {
     password: '',
     passwordConfirmation: '',
     bio: '',
-    availability: '',
+    availability: 'Immediate',
     specialisms: [],
     languages: [],
     availableFor: '',
@@ -170,7 +170,15 @@ const Signup = (props) => {
           {' Please choose your availability '}
         </p>}
       </label>
-    
+
+      <label>available for
+        <input
+          type="text"
+          onChange={handleChange}
+          value={signupFormData.availableFor}
+          name="availableFor"
+        />
+      </label>
       <label>specialisms
         <input
           type="text"
@@ -179,7 +187,7 @@ const Signup = (props) => {
           name="specialisms"
         />
       </label>
-     
+
       <label>languages
         <input
           type="text"
@@ -188,6 +196,7 @@ const Signup = (props) => {
           name="languages"
         />
       </label>
+
 
       <label>image
         <input
