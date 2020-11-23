@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
+import Footer from './Footer'
 
 const CityList = () => {
 
@@ -54,6 +55,7 @@ const CityList = () => {
         </div>
       })}
     </section>
+    <Footer/>
   </main>
 }
 

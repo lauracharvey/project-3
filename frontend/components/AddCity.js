@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import Navbar from './Navbar'
+import Footer from './Footer'
 
 const AddCity = (props) => {
 
@@ -78,6 +79,7 @@ const AddCity = (props) => {
       </label>
       <button>Submit</button>
     </form>
+    <Footer/>
   </main>
 }
 

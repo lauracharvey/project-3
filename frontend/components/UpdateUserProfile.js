@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Navbar from './Navbar'
+import Footer from './Footer'
 
 const UpdateUserProfile = (props) => {
   const userId = props.match.params.userId
@@ -176,7 +177,8 @@ const UpdateUserProfile = (props) => {
     <button onClick={handleDelete}>
       Delete Profile
     </button>
-  </main >
+    <Footer/>
+  </main>
 }
 
 export default UpdateUserProfile

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { isCreator } from '../lib/auth'
 import Navbar from './Navbar'
+import Footer from './Footer'
 
 const City = (props) => {
   
@@ -146,6 +147,7 @@ const City = (props) => {
         </button>
       </section>
     </section>
+    <Footer/>
   </main>
 }
 

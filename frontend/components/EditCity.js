@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Navbar from './Navbar'
+import Footer from './Footer'
 
 const EditCity = (props) => {
   const cityName = props.match.params.cityName
@@ -66,6 +67,7 @@ const EditCity = (props) => {
       <button>Submit</button>
 
     </form>
+    <Footer/>
   </main>
 }
 

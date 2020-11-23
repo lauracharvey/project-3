@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Navbar from './Navbar'
+import Footer from './Footer'
 
 const UserProfile = (props) => {
   const userId = props.match.params.userId
@@ -70,6 +71,7 @@ const UserProfile = (props) => {
         <h3>{user.availableFor}</h3>
       </section>
     </section>
+    <Footer/>
   </main>
 }
 

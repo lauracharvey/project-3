@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
+import Footer from './Footer'
 
 const UserListByCity = (props) => {
   const [userData, updateUserData] = useState([])
@@ -41,6 +42,7 @@ const UserListByCity = (props) => {
         </div>
       })}
     </section>
+    <Footer/>
   </main>
 
 }

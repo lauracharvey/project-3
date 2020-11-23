@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-
-
 const EditComment = (props) => {
   const [comment, updateComment] = useState({})
 
@@ -23,7 +21,6 @@ const EditComment = (props) => {
         updateComment(data)
       })
   }, [])
-
 
   function handleUpdateComment() {
     axios.put(`/api/cities/${cityName}/comments/${commentId}`, comment, {
